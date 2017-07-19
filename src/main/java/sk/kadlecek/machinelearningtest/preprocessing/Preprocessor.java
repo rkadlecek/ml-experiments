@@ -15,7 +15,8 @@ public class Preprocessor {
 
     public static void main(String[] args) throws Exception {
         InputReader inputReader = new CsvInputReader();
-        InputValue[] values = inputReader.readInputValues("preprocessor_sample.csv");
+        InputValue[] values = inputReader.readInputValues("mobileshop_phones.csv");
+        //InputValue[] values = inputReader.readInputValues("preprocessor_sample.csv");
 
         TextFeatureDetector featureDetector = new TextFeatureDetector();
 
@@ -26,7 +27,8 @@ public class Preprocessor {
         }
 
         TxtOutputWriter writer = new TxtOutputWriter();
-        writer.write(featuresList, "preprocessor_output.txt", ',', true);
+        writer.write(featuresList, "mobileshop_phones_dataset.arff", ',', true);
+        //writer.write(featuresList, "preprocessor_output.txt", ',', true);
 
         System.out.println("Done");
     }

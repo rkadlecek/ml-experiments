@@ -1,46 +1,45 @@
 package sk.kadlecek.machinelearningtest;
 
+import sk.kadlecek.machinelearningtest.ml.AlgorithmRunResult;
+import sk.kadlecek.machinelearningtest.ml.AlgorithmStats;
+import weka.classifiers.Classifier;
+import weka.classifiers.Evaluation;
+import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.evaluation.NominalPrediction;
+import weka.classifiers.evaluation.Prediction;
+import weka.classifiers.functions.MultilayerPerceptron;
+import weka.classifiers.functions.SMO;
+import weka.classifiers.rules.DecisionTable;
+import weka.classifiers.rules.PART;
+import weka.classifiers.trees.DecisionStump;
+import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
+import weka.core.Instances;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import sk.kadlecek.machinelearningtest.ml.AlgorithmRunResult;
-import sk.kadlecek.machinelearningtest.ml.AlgorithmStats;
-import weka.classifiers.Classifier;
-import weka.classifiers.Evaluation;
-import weka.classifiers.bayes.NaiveBayes;
-import weka.classifiers.bayes.NaiveBayesUpdateable;
-import weka.classifiers.evaluation.NominalPrediction;
-import weka.classifiers.evaluation.Prediction;
-import weka.classifiers.functions.LinearRegression;
-import weka.classifiers.functions.MultilayerPerceptron;
-import weka.classifiers.functions.SMO;
-import weka.classifiers.functions.VotedPerceptron;
-import weka.classifiers.pmml.consumer.SupportVectorMachineModel;
-import weka.classifiers.rules.DecisionTable;
-import weka.classifiers.rules.PART;
-import weka.classifiers.trees.DecisionStump;
-import weka.classifiers.trees.J48;
-import weka.classifiers.trees.RandomForest;
-import weka.core.FastVector;
-import weka.core.Instances;
-
-public class MlExperiments {
+public class MlExperiments2 {
 
     public static void main(String[] args) throws Exception {
-        BufferedReader datafile = readDataFile("preprocessor_output.txt");
+        BufferedReader trainingDatafile = readDataFile("preprocessor_output.txt");
+        BufferedReader testDatafile = readDataFile("mobileshop_phones_dataset.arff");
 
-        Instances data = new Instances(datafile);
-        data.setClassIndex(data.numAttributes() - 1);
+        Instances trainingData = new Instances(trainingDatafile);
+        trainingData.setClassIndex(trainingData.numAttributes() - 1);
+
+        Instances testData = new Instances(testDatafile);
+        testData.setClassIndex(testData.numAttributes() - 1);
 
         // Do 10-split cross validation
-        Instances[][] split = crossValidationSplit(data, 10);
+        //Instances[][] split = crossValidationSplit(data, 10);
 
         // Separate split into training and testing arrays
-        Instances[] trainingSplits = split[0];
-        Instances[] testingSplits = split[1];
+        //Instances[] trainingSplits = split[0];
+        //Instances[] testingSplits = split[1];
 
         // Use a set of classifiers
         Classifier[] models = {
@@ -62,10 +61,10 @@ public class MlExperiments {
             ArrayList<AlgorithmRunResult> algorithmRuns = new ArrayList<>();
 
             // For each training-testing split pair, train and test the classifier
-            for (int i = 0; i < trainingSplits.length; i++) {
+            //for (int i = 0; i < trainingSplits.length; i++) {
                 Long startTime = System.currentTimeMillis();
 
-                Evaluation validation = classify(models[j], trainingSplits[i], testingSplits[i]);
+                Evaluation validation = classify(models[j], trainingData, testData);
 
                 Long endTime = System.currentTimeMillis();
 
@@ -79,7 +78,7 @@ public class MlExperiments {
 //                System.out.println("Weighted F-Measure: " + String.format("%.2f%%", validation.weightedFMeasure() * 100));
 //                System.out.println("Weighted Precision: " + String.format("%.2f%%", validation.weightedPrecision() * 100));
 //                System.out.println("Weighted Recall: " + String.format("%.2f%%", validation.weightedRecall() * 100));
-            }
+            //}
 
 
 
