@@ -1,0 +1,15 @@
+J48: Average Precision:83.03% Average Recall:83.42% Average FMeasure:81.92% Average Time:28.70ms
+---------------------------------
+DecisionStump: Average Precision:8.57% Average Recall:25.12% Average FMeasure:12.23% Average Time:3.40ms
+---------------------------------
+PART: Average Precision:82.46% Average Recall:82.47% Average FMeasure:81.13% Average Time:24.80ms
+---------------------------------
+DecisionTable: Average Precision:72.00% Average Recall:73.04% Average FMeasure:70.69% Average Time:109.20ms
+---------------------------------
+NaiveBayes: Average Precision:74.03% Average Recall:73.58% Average FMeasure:72.03% Average Time:10.20ms
+---------------------------------
+RandomForest: Average Precision:87.88% Average Recall:86.92% Average FMeasure:86.34% Average Time:120.30ms
+---------------------------------
+SMO: Average Precision:39.88% Average Recall:53.75% Average FMeasure:43.15% Average Time:985.60ms
+---------------------------------
+MultilayerPerceptron: Average Precision:78.53% Average Recall:78.70% Average FMeasure:76.92% Average Time:7322.90ms
