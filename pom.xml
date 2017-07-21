@@ -23,6 +23,10 @@
         </dependency>
     </dependencies>
 
+    <packaging>jar</packaging>
+    <build>
+        <finalName>${artifactId}</finalName>
+    </build>
 
 
 </project>

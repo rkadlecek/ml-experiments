@@ -1,6 +1,6 @@
-package sk.kadlecek.machinelearningtest.preprocessing.output;
+package sk.kadlecek.mle.preprocessing.output;
 
-import sk.kadlecek.machinelearningtest.preprocessing.featuredetection.InputValueWithFeatures;
+import sk.kadlecek.mle.preprocessing.featuredetection.InputValueWithFeatures;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

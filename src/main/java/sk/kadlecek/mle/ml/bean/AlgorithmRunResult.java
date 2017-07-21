@@ -1,4 +1,4 @@
-package sk.kadlecek.machinelearningtest.ml;
+package sk.kadlecek.mle.ml.bean;
 
 import weka.classifiers.Evaluation;
 
