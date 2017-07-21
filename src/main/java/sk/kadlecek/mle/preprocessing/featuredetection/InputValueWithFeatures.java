@@ -1,4 +1,4 @@
-package sk.kadlecek.machinelearningtest.preprocessing.featuredetection;
+package sk.kadlecek.mle.preprocessing.featuredetection;
 
 public class InputValueWithFeatures {
 

@@ -1,12 +1,11 @@
-package sk.kadlecek.machinelearningtest.preprocessing;
+package sk.kadlecek.mle.preprocessing;
 
-import sk.kadlecek.machinelearningtest.preprocessing.input.CsvInputReader;
-import sk.kadlecek.machinelearningtest.preprocessing.input.InputReader;
-import sk.kadlecek.machinelearningtest.preprocessing.input.InputValue;
-import sk.kadlecek.machinelearningtest.preprocessing.input.TxtInputReader;
-import sk.kadlecek.machinelearningtest.preprocessing.output.TxtOutputWriter;
-import sk.kadlecek.machinelearningtest.preprocessing.featuredetection.TextFeatureDetector;
-import sk.kadlecek.machinelearningtest.preprocessing.featuredetection.InputValueWithFeatures;
+import sk.kadlecek.mle.preprocessing.input.CsvInputReader;
+import sk.kadlecek.mle.preprocessing.input.InputReader;
+import sk.kadlecek.mle.preprocessing.input.InputValue;
+import sk.kadlecek.mle.preprocessing.output.TxtOutputWriter;
+import sk.kadlecek.mle.preprocessing.featuredetection.TextFeatureDetector;
+import sk.kadlecek.mle.preprocessing.featuredetection.InputValueWithFeatures;
 
 import java.util.ArrayList;
 import java.util.List;

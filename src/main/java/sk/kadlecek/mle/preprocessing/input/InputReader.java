@@ -1,4 +1,4 @@
-package sk.kadlecek.machinelearningtest.preprocessing.input;
+package sk.kadlecek.mle.preprocessing.input;
 
 import java.io.IOException;
 

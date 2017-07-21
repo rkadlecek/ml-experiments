@@ -1,6 +1,6 @@
-package sk.kadlecek.machinelearningtest.preprocessing.featuredetection;
+package sk.kadlecek.mle.preprocessing.featuredetection;
 
-import sk.kadlecek.machinelearningtest.preprocessing.input.InputValue;
+import sk.kadlecek.mle.preprocessing.input.InputValue;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

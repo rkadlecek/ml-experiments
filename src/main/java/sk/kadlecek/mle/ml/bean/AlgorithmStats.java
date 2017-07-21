@@ -1,4 +1,4 @@
-package sk.kadlecek.machinelearningtest.ml;
+package sk.kadlecek.mle.ml.bean;
 
 public class AlgorithmStats {
 
@@ -60,7 +60,7 @@ public class AlgorithmStats {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(classifierName + ":");
-        sb.append(" Average Accuracy:" + String.format("%.2f%%", getAvgWeightedAccuracy() * 100));
+//        sb.append(" Average Accuracy:" + String.format("%.2f%%", getAvgWeightedAccuracy() * 100));
         sb.append(" Average Precision:" + String.format("%.2f%%", getAvgWeightedPrecision() * 100));
         sb.append(" Average Recall:" + String.format("%.2f%%", getAvgWeightedRrecall() * 100));
         sb.append(" Average FMeasure:" + String.format("%.2f%%", getAvgWeightedFMeasure() * 100));
