@@ -12,6 +12,7 @@ public class J48Factory extends AbstractAlgorithmFactory {
     boolean[] subtreeRaisingValues = new boolean[0];
     boolean[] useLaplaceValues = new boolean[0];
     boolean[] useMDLCorrectionValues = new boolean[0];
+    boolean[] unprunedValues = new boolean[0];
 
 
 
@@ -20,7 +21,7 @@ public class J48Factory extends AbstractAlgorithmFactory {
         int[][] valueArrayIndexesArray = generateArrayIndexCartesianProduct(
                 confidenceFactorValues.length, numFoldsValues.length,
                 subtreeRaisingValues.length, useLaplaceValues.length,
-                useMDLCorrectionValues.length);
+                useMDLCorrectionValues.length, unprunedValues.length);
 
         List<ClassifierWithProperties> classifiers = new ArrayList<>();
 
@@ -50,7 +51,7 @@ public class J48Factory extends AbstractAlgorithmFactory {
             }
 
             if (valueArrayIndexes[3] > -1) {
-                Boolean value = subtreeRaisingValues[valueArrayIndexes[3]];
+                Boolean value = useLaplaceValues[valueArrayIndexes[3]];
                 properties.put("UseLaplace", value.toString());
                 classifier.setUseLaplace(value);
             }
@@ -59,6 +60,12 @@ public class J48Factory extends AbstractAlgorithmFactory {
                 Boolean value = useMDLCorrectionValues[valueArrayIndexes[4]];
                 properties.put("UseMDLCorrection", value.toString());
                 classifier.setUseMDLcorrection(value);
+            }
+
+            if (valueArrayIndexes[5] > -1) {
+                Boolean value = unprunedValues[valueArrayIndexes[5]];
+                properties.put("Unpruned", value.toString());
+                classifier.setUnpruned(value);
             }
 
             classifiers.add(new ClassifierWithProperties(classifier, properties));
@@ -85,5 +92,9 @@ public class J48Factory extends AbstractAlgorithmFactory {
 
     public void setUseMDLCorrectionValues(boolean[] useMDLCorrectionValues) {
         this.useMDLCorrectionValues = useMDLCorrectionValues;
+    }
+
+    public void setUnprunedValues(boolean[] unprunedValues) {
+        this.unprunedValues = unprunedValues;
     }
 }
