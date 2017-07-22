@@ -5,6 +5,7 @@ import sk.kadlecek.mle.ml.bean.AlgorithmStats;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.bayes.NaiveBayesUpdateable;
 import weka.classifiers.functions.MultilayerPerceptron;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.rules.DecisionTable;
@@ -65,7 +66,7 @@ public class SeparateDatasets {
             // Calculate overall accuracy of current classifier on all splits
             AlgorithmStats algorithmStats = calculateStats(algorithmRuns);
 
-            System.out.print(algorithmStats.toString());
+            System.out.println(algorithmStats.toString());
         }
     }
 

@@ -102,4 +102,37 @@ public class Common {
         return evaluation;
     }
 
+    public static Float[] generateFloatRange(float from, float to, float step) {
+        List<Float> lst = new ArrayList<>();
+        for (float i = from; i <= to; i += step) {
+            lst.add(i);
+        }
+        return lst.toArray(new Float[0]);
+    }
+
+    public static Integer[] generateIntegerRange(int from, int to, int step) {
+        List<Integer> lst = new ArrayList<>();
+        for (int i = from; i <= to; i += step) {
+            lst.add(i);
+        }
+        return lst.toArray(new Integer[0]);
+    }
+
+    public static int[] generateIntRange(int from, int to, int step) {
+        Integer[] arrInteger = generateIntegerRange(from, to, step);
+
+        int[] arrInt = new int[arrInteger.length];
+
+        for (int i = 0; i < arrInteger.length; i++) {
+            arrInt[i] = arrInteger[i];
+        }
+        return arrInt;
+    }
+
+    public static boolean[] generateBooleanRange() {
+        boolean[] arr = new boolean[2];
+        arr[0] = false;
+        arr[1] = true;
+        return arr;
+    }
 }
