@@ -1,15 +1,13 @@
 package sk.kadlecek.mle.ml;
 
-import sk.kadlecek.mle.ml.bean.AlgorithmRunResult;
 import sk.kadlecek.mle.ml.bean.AlgorithmStats;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
-import weka.classifiers.Evaluation;
+import sk.kadlecek.mle.ml.runnable.EvaluateClassifierCallable;
 import weka.core.Instances;
 
-import java.util.ArrayList;
-
-import static sk.kadlecek.mle.ml.Common.calculateStats;
-import static sk.kadlecek.mle.ml.Common.classify;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.*;
 
 public class AbstractEvaluation {
 
@@ -22,30 +20,24 @@ public class AbstractEvaluation {
     protected static void evaluateClassifiers(ClassifierWithProperties[] models, Instances trainingData, Instances testingData)
         throws Exception {
 
+        //ExecutorService cachedPool = Executors.newCachedThreadPool();
+        ExecutorService cachedPool = new ThreadPoolExecutor(5, 5, 60, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>());
+
+
         // Run for each model
+        Set<Future<AlgorithmStats>> futures = new HashSet<Future<AlgorithmStats>>();
+
         for (int j = 0; j < models.length; j++) {
-
-            // Collect every group of predictions for current model in a FastVector
-            ArrayList<AlgorithmRunResult> algorithmRuns = new ArrayList<>();
-
-            // For each training-testing split pair, train and test the classifier
-            Long startTime = System.currentTimeMillis();
-
-            Evaluation validation = classify(models[j].getClassifier(), trainingData, testingData);
-
-            Long endTime = System.currentTimeMillis();
-
-            AlgorithmRunResult algorithmRunResult =
-                    new AlgorithmRunResult(models[j].getClassifierSimpleName(), validation, endTime - startTime);
-
-            algorithmRuns.add(algorithmRunResult);
-
-            // Calculate overall accuracy of current classifier on all splits
-            AlgorithmStats algorithmStats = calculateStats(algorithmRuns);
-
-            System.out.print(models[j].getProperties().toString() + "\t");
-            System.out.println(algorithmStats.toStringNoLabels());
+            Future<AlgorithmStats> future = cachedPool.submit(new EvaluateClassifierCallable(j, models[j], trainingData, testingData));
+            futures.add(future);
         }
+
+        for (Future<AlgorithmStats> future : futures) {
+            System.out.println(future.get().toStringNoLabels());
+        }
+
+        cachedPool.shutdown();
     }
 
 }

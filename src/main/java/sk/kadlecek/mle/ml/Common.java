@@ -110,6 +110,14 @@ public class Common {
         return lst.toArray(new Float[0]);
     }
 
+    public static Double[] generateDoubleRange(double from, double to, double step) {
+        List<Double> lst = new ArrayList<>();
+        for (double i = from; i <= to; i += step) {
+            lst.add(i);
+        }
+        return lst.toArray(new Double[0]);
+    }
+
     public static Integer[] generateIntegerRange(int from, int to, int step) {
         List<Integer> lst = new ArrayList<>();
         for (int i = from; i <= to; i += step) {
