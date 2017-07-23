@@ -8,11 +8,12 @@ import weka.core.Instances;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
 import static sk.kadlecek.mle.ml.Common.calculateStats;
 import static sk.kadlecek.mle.ml.Common.classify;
 
-public class EvaluateClassifierCallable implements Callable<AlgorithmStats> {
+public class EvaluateClassifierCallable implements Callable<AlgorithmStats>, Supplier<AlgorithmStats> {
 
     private int id;
     private ClassifierWithProperties modelWithProperties;
@@ -47,5 +48,15 @@ public class EvaluateClassifierCallable implements Callable<AlgorithmStats> {
         AlgorithmStats algorithmStats = calculateStats(algorithmRuns);
         algorithmStats.setProperties(modelWithProperties.getProperties());
         return algorithmStats;
+    }
+
+    @Override
+    public AlgorithmStats get() {
+        try {
+            return call();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

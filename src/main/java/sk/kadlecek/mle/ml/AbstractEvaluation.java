@@ -6,6 +6,7 @@ import sk.kadlecek.mle.ml.runnable.EvaluateClassifierCallable;
 import weka.core.Instances;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.*;
 
@@ -33,11 +34,25 @@ public class AbstractEvaluation {
             futures.add(future);
         }
 
-        for (Future<AlgorithmStats> future : futures) {
-            System.out.println(future.get().toStringNoLabels());
-        }
+        while (true) {
+            boolean allCompleted = true;
+            Iterator<Future<AlgorithmStats>> iter = futures.iterator();
 
-        cachedPool.shutdown();
+            while (iter.hasNext()) {
+                Future<AlgorithmStats> f = iter.next();
+                if (f.isDone()) {
+                    System.out.println(f.get().toStringNoLabels());
+                    iter.remove();
+                }else {
+                    allCompleted = false;
+                }
+            }
+
+            if (allCompleted) {
+                cachedPool.shutdown();
+            }
+            Thread.sleep(500);
+        }
     }
 
 }

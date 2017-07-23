@@ -23,13 +23,6 @@ public class EvaluationMultilayerPerceptron extends AbstractEvaluation {
         MultilayerPerceptronFactory factory = new MultilayerPerceptronFactory();
         boolean[] booleanRange = generateBooleanRange();
 
-        boolean[] autoBuildValues = new boolean[0];
-        boolean[] decayValues = new boolean[0];
-        boolean[] nominalToBinaryFilterValues = new boolean[0];
-        boolean[] normalizeAttributesValues = new boolean[0];
-        boolean[] normalizeNumericClassValues = new boolean[0];
-        boolean[] resetValues = new boolean[0];
-
         String[] hiddenLayersValues = {"a", "t", "i", "o", "a,t"};
         factory.setHiddenLayersValues(hiddenLayersValues);
         factory.setLearningRateValues(generateDoubleRange(0.1,0.5, 0.1));
