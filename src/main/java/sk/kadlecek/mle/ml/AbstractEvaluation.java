@@ -21,20 +21,21 @@ public class AbstractEvaluation {
     protected static void evaluateClassifiers(ClassifierWithProperties[] models, Instances trainingData, Instances testingData)
         throws Exception {
 
-        //ExecutorService cachedPool = Executors.newCachedThreadPool();
-        ExecutorService cachedPool = new ThreadPoolExecutor(5, 5, 60, TimeUnit.SECONDS,
+        //ExecutorService cachedPool = Executors.newFixedThreadPool(4);
+        ExecutorService cachedPool = new ThreadPoolExecutor(4, 4, 60, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>());
 
-
         // Run for each model
-        Set<Future<AlgorithmStats>> futures = new HashSet<Future<AlgorithmStats>>();
+        Set<Future<AlgorithmStats>> futures = new HashSet<>();
 
         for (int j = 0; j < models.length; j++) {
             Future<AlgorithmStats> future = cachedPool.submit(new EvaluateClassifierCallable(j, models[j], trainingData, testingData));
+            models[j] = null;
             futures.add(future);
         }
 
-        while (true) {
+        boolean run = true;
+        while (run) {
             boolean allCompleted = true;
             Iterator<Future<AlgorithmStats>> iter = futures.iterator();
 
@@ -50,8 +51,10 @@ public class AbstractEvaluation {
 
             if (allCompleted) {
                 cachedPool.shutdown();
+                run = false;
+            }else {
+                Thread.sleep(500);
             }
-            Thread.sleep(500);
         }
     }
 
