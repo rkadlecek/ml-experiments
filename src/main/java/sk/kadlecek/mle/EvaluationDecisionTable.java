@@ -12,7 +12,7 @@ import weka.core.SelectedTag;
 import static sk.kadlecek.mle.ml.Common.generateBooleanRange;
 import static sk.kadlecek.mle.ml.Common.readDataFile;
 
-public class EvaluateDecisionTable extends AbstractEvaluation {
+public class EvaluationDecisionTable extends AbstractEvaluation {
 
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {

@@ -1,0 +1,10 @@
+{SearchMethod=Best first.Start set: no attributesSearch direction: bi-directionalStale search after 5 node expansionsTotal number of subsets evaluated: 0Merit of best subset found:    0    , UseIBk=false}	17.68%	21.35%	13.46%	381.00ms
+{SearchMethod=Best first.Start set: no attributesSearch direction: backwardStale search after 5 node expansionsTotal number of subsets evaluated: 0Merit of best subset found:    0    , UseIBk=false}	13.70%	10.51%	10.20%	652.00ms
+{SearchMethod=Best first.Start set: no attributesSearch direction: forwardStale search after 5 node expansionsTotal number of subsets evaluated: 0Merit of best subset found:    0    , UseIBk=true}	18.71%	15.44%	12.22%	769.00ms
+{SearchMethod=Greedy Stepwise (forwards).Start set: no attributesMerit of best subset found:    0    , UseIBk=true}	18.71%	15.44%	12.22%	202.00ms
+{SearchMethod=Best first.Start set: no attributesSearch direction: backwardStale search after 5 node expansionsTotal number of subsets evaluated: 0Merit of best subset found:    0    , UseIBk=true}	30.15%	16.26%	14.41%	726.00ms
+{SearchMethod=Best first.Start set: no attributesSearch direction: forwardStale search after 5 node expansionsTotal number of subsets evaluated: 0Merit of best subset found:    0    , UseIBk=false}	14.03%	21.84%	13.62%	607.00ms
+{SearchMethod=Greedy Stepwise (forwards).Start set: no attributesMerit of best subset found:    0    , UseIBk=false}	15.92%	23.48%	18.41%	75.00ms
+{SearchMethod=Greedy Stepwise (backwards).Start set: all attributesMerit of best subset found:    0    , UseIBk=false}	13.69%	10.43%	10.18%	117.00ms
+{SearchMethod=Greedy Stepwise (backwards).Start set: all attributesMerit of best subset found:    0    , UseIBk=true}	30.14%	16.17%	14.39%	159.00ms
+{SearchMethod=Best first.Start set: no attributesSearch direction: bi-directionalStale search after 5 node expansionsTotal number of subsets evaluated: 0Merit of best subset found:    0    , UseIBk=true}	19.49%	14.53%	11.56%	440.00ms

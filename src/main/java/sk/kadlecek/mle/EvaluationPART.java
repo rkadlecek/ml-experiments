@@ -1,5 +1,6 @@
-package sk.kadlecek.mle.ml;
+package sk.kadlecek.mle;
 
+import sk.kadlecek.mle.ml.AbstractEvaluation;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.factory.PARTFactory;
 import weka.core.Instances;
