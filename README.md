@@ -38,6 +38,30 @@ The `SeparateDatasets` application takes 2 arguments:
 ```
 $ java -cp target/ml-experiments.jar sk.kadlecek.mle.SeparateDatasets resources/experiment2/phones_dataset.arff resources/experiment2/tablets_dataset.arff
 ```
+
+### Running Algorithm Configuration Evaluation
+
+For each algorithm there is a runnable class, which launches the algorithm on given training and testing datasets 
+(same way as in *Running with separate training and testing datasets). This classes are called 
+*Evaluation[algorithm]*:
+
++ EvalationJ48
++ EvalationDecisionStump
++ EvalationPART
++ EvalationDecisionTable
++ EvalationRandomForest
++ EvalationNaiveBayes
++ EvalationSMO
++ EvalationMultilayerPerceptron
+
+Example:
+
+```
+$ java -cp target/ml-experiments.jar sk.kadlecek.mle.EvaluationMultilayerPerceptron resources/experiment2/phones_dataset.arff resources/experiment2/tablets_dataset.arff
+```
+
+Note: Evaluation of configurations of some algorithms, especially *RandomForest* and *MultilayerPerceptron* may take long time to complete.
+
 ## Resources
 
-Weka framework: http://www.cs.waikato.ac.nz/~ml/weka/
+[1] Weka framework: http://www.cs.waikato.ac.nz/~ml/weka/

@@ -1,8 +1,13 @@
 package sk.kadlecek.mle.ml.bean;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class AlgorithmStats {
 
     private String classifierName;
+    private Map<String, String> properties = new LinkedHashMap<>();
+
     private Double avgWeightedAccuracy;
     private Double avgWeightedPrecision;
     private Double avgWeightedRrecall;
@@ -25,7 +30,7 @@ public class AlgorithmStats {
         this.avgWeightedPrecision = avgWeightedPrecision;
     }
 
-    public Double getAvgWeightedRrecall() {
+    public Double getAvgWeightedRecall() {
         return avgWeightedRrecall;
     }
 
@@ -57,15 +62,35 @@ public class AlgorithmStats {
         this.classifierName = classifierName;
     }
 
+    public Map<String, String> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Map<String, String> properties) {
+        this.properties = properties;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(classifierName + ":");
 //        sb.append(" Average Accuracy:" + String.format("%.2f%%", getAvgWeightedAccuracy() * 100));
-        sb.append(" Average Precision:" + String.format("%.2f%%", getAvgWeightedPrecision() * 100));
-        sb.append(" Average Recall:" + String.format("%.2f%%", getAvgWeightedRrecall() * 100));
-        sb.append(" Average FMeasure:" + String.format("%.2f%%", getAvgWeightedFMeasure() * 100));
-        sb.append(" Average Time:" + String.format("%.2fms", getAvgTime()));
-        sb.append("\n---------------------------------\n");
+        sb.append("\tAverage Precision:" + String.format("%.2f%%", getAvgWeightedPrecision() * 100));
+        sb.append("\tAverage Recall:" + String.format("%.2f%%", getAvgWeightedRecall() * 100));
+        sb.append("\tAverage FMeasure:" + String.format("%.2f%%", getAvgWeightedFMeasure() * 100));
+        sb.append("\tAverage Time:" + String.format("%.2fms", getAvgTime()));
+        //sb.append("\n---------------------------------\n");
+        return sb.toString();
+    }
+
+    public String toStringNoLabels() {
+        StringBuilder sb = new StringBuilder();
+        if (!properties.isEmpty()) {
+            sb.append(properties.toString() + "\t");
+        }
+        sb.append(String.format("%.2f%%", getAvgWeightedPrecision() * 100) + "\t");
+        sb.append(String.format("%.2f%%", getAvgWeightedRecall() * 100) + "\t");
+        sb.append(String.format("%.2f%%", getAvgWeightedFMeasure() * 100) + "\t");
+        sb.append(String.format("%.2fms", getAvgTime()));
         return sb.toString();
     }
 }
