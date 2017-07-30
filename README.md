@@ -41,23 +41,39 @@ $ java -cp target/ml-experiments.jar sk.kadlecek.mle.SeparateDatasets resources/
 
 ### Running Algorithm Configuration Evaluation
 
-For each algorithm there is a runnable class, which launches the algorithm on given training and testing datasets 
-(same way as in *Running with separate training and testing datasets). This classes are called 
-*Evaluation[algorithm]*:
+There is a runnable class, called *Evaluation*, which launches the chosen algorithm on given training and testing datasets.
+The Evaluation application takes following command line arguments:
 
-+ EvalationJ48
-+ EvalationDecisionStump
-+ EvalationPART
-+ EvalationDecisionTable
-+ EvalationRandomForest
-+ EvalationNaiveBayes
-+ EvalationSMO
-+ EvalationMultilayerPerceptron
+```
+usage: ant
+ -a,--algorithm <algorithm>                   algorithm to evaluate 
+ -h,--help                                    print help
+ -s,--testing-set <testing-set-file-path>     path to testing set file
+ -t,--training-set <training-set-file-path>   path to training set file
+ -v,--vectorize-strings                       vectorize strings (if input value is a string instead of
+                                              set of features)
+```
+
+
+*Supported Algorithms*:
+
++ J48
++ DecisionStump
++ PART
++ DecisionTable
++ RandomForest
++ NaiveBayes
++ SMO
++ MultilayerPerceptron
 
 Example:
 
 ```
-$ java -cp target/ml-experiments.jar sk.kadlecek.mle.EvaluationMultilayerPerceptron resources/experiment2/phones_dataset.arff resources/experiment2/tablets_dataset.arff
+java -cp target/ml-experiments.jar sk.kadlecek.mle.Evaluation -a NaiveBayes -t resources/experiment4/gb_phones_dataset.arff -s resources/experiment4/me_phones_dataset.arff 
+```
+
+```
+java -cp target/ml-experiments.jar sk.kadlecek.mle.Evaluation -a NaiveBayes -v -t resources/experiment5/gb_phones.arff -s resources/experiment5/me_phones.arff 
 ```
 
 Note: Evaluation of configurations of some algorithms, especially *RandomForest* and *MultilayerPerceptron* may take long time to complete.

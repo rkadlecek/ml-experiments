@@ -1,23 +1,14 @@
-package sk.kadlecek.mle;
+package sk.kadlecek.mle.ml.builder;
 
-import sk.kadlecek.mle.ml.AbstractEvaluation;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.factory.PARTFactory;
-import weka.core.Instances;
 
 import static sk.kadlecek.mle.ml.Common.*;
 
-public class EvaluationPART extends AbstractEvaluation {
+public class PARTConfigurationBuilder implements ClassifierConfigurationBuilder {
 
-    public static void main(String[] args) throws Exception {
-        if (args.length < 2) {
-            printUsageInfo();
-            System.exit(1);
-        }
-
-        Instances trainingData = readDataFile(args[0]);
-        Instances testingData = readDataFile(args[1]);
-
+    @Override
+    public ClassifierWithProperties[] buildClassifiers() {
         // build classifiers
         PARTFactory factory = new PARTFactory();
         boolean[] booleanRange = generateBooleanRange();
@@ -33,7 +24,6 @@ public class EvaluationPART extends AbstractEvaluation {
 
 
         // evaluate
-        ClassifierWithProperties[] models = factory.generateAllClassifiers();
-        evaluateClassifiers(models, trainingData, testingData);
+        return factory.generateAllClassifiers();
     }
 }

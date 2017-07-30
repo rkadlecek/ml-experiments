@@ -1,24 +1,14 @@
-package sk.kadlecek.mle;
+package sk.kadlecek.mle.ml.builder;
 
-import sk.kadlecek.mle.ml.AbstractEvaluation;
 import sk.kadlecek.mle.ml.factory.J48Factory;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
-import weka.core.Instances;
 
 import static sk.kadlecek.mle.ml.Common.*;
 
-public class EvaluationJ48 extends AbstractEvaluation {
+public class J48ConfigurationBuilder implements ClassifierConfigurationBuilder {
 
-    public static void main(String[] args) throws Exception {
-        if (args.length < 2) {
-            printUsageInfo();
-            System.exit(1);
-        }
-
-        Instances trainingData = readDataFile(args[0]);
-        Instances testingData = readDataFile(args[1]);
-
-        // build classifiers
+    @Override
+    public ClassifierWithProperties[] buildClassifiers() {
         J48Factory factory = new J48Factory();
         boolean[] booleanRange = generateBooleanRange();
 
@@ -29,9 +19,7 @@ public class EvaluationJ48 extends AbstractEvaluation {
         factory.setUseMDLCorrectionValues(booleanRange);
         factory.setUnprunedValues(booleanRange);
 
-        // evaluate
-        ClassifierWithProperties[] models = factory.generateAllClassifiers();
-        evaluateClassifiers(models, trainingData, testingData);
+        return factory.generateAllClassifiers();
     }
 
 }
