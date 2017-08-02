@@ -13,7 +13,7 @@ public class J48ConfigurationBuilder implements ClassifierConfigurationBuilder {
         boolean[] booleanRange = generateBooleanRange();
 
         factory.setConfidenceFactorValues(generateFloatRange(0.1f, 0.4f, 0.1f));
-        factory.setNumFoldsValues(generateIntegerRange(1, 3, 1));
+        factory.setMinNumObjPerLeafValues(generateIntegerRange(0, 10, 1));
         factory.setSubtreeRaisingValues(booleanRange);
         factory.setUseLaplaceValues(booleanRange);
         factory.setUseMDLCorrectionValues(booleanRange);
