@@ -1,0 +1,6 @@
+{SearchMethod=	Best first.	Start set: no attributes	Search direction: forward	Stale search after 5 node expansions	Total number of subsets evaluated: 0	Merit of best subset found:    0    , UseIBk=false}	0.30%	1.40%	0.44%	31576.00ms
+{SearchMethod=	Best first.	Start set: no attributes	Search direction: forward	Stale search after 5 node expansions	Total number of subsets evaluated: 0	Merit of best subset found:    0    , UseIBk=true}	0.29%	0.82%	0.43%	32006.00ms
+{SearchMethod=	Best first.	Start set: no attributes	Search direction: bi-directional	Stale search after 5 node expansions	Total number of subsets evaluated: 0	Merit of best subset found:    0    , UseIBk=true}	0.45%	1.48%	0.69%	31021.00ms
+{SearchMethod=	Best first.	Start set: no attributes	Search direction: bi-directional	Stale search after 5 node expansions	Total number of subsets evaluated: 0	Merit of best subset found:    0    , UseIBk=false}	0.47%	2.05%	0.71%	31265.00ms
+{SearchMethod=	Greedy Stepwise (forwards).	Start set: no attributes	Merit of best subset found:    0    , UseIBk=false}	0.30%	1.40%	0.44%	23757.00ms
+{SearchMethod=	Greedy Stepwise (forwards).	Start set: no attributes	Merit of best subset found:    0    , UseIBk=true}	0.29%	0.82%	0.43%	23886.00ms

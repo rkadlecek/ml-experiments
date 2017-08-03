@@ -50,16 +50,22 @@ public class CsvInputReader implements InputReader {
         List<InputValue> list = new ArrayList<>();
         String[] cols = line.split(separator);
         int duplicates = 0;
+        int emptyvalues = 0;
         for (int i = 0; i < cols.length; i++) {
-            if (!existingValueSet.contains(cols[i])) {
-                list.add(new InputValue(cols[i], columnHeaderMap.get(i)));
-                existingValueSet.add(cols[i]);
+            String value = cols[i].trim();
+            if (!value.isEmpty()) {
+                if (!existingValueSet.contains(value)) {
+                    list.add(new InputValue(value, columnHeaderMap.get(i)));
+                    existingValueSet.add(value);
+                } else {
+                    duplicates++;
+                }
             } else {
-                duplicates++;
+                emptyvalues++;
             }
         }
 
-        System.out.println("Skipped " + duplicates + " duplicate values.");
+        System.out.println("Skipped " + duplicates + " duplicate and " + emptyvalues + " empty values.");
         return list;
     }
 }

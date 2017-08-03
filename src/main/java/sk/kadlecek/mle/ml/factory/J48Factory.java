@@ -8,7 +8,7 @@ import java.util.*;
 public class J48Factory extends AbstractAlgorithmFactory {
 
     Float[] confidenceFactorValues = new Float[0];
-    Integer[] numFoldsValues = new Integer[0];
+    Integer[] minNumObjPerLeafValues = new Integer[0];
     boolean[] subtreeRaisingValues = new boolean[0];
     boolean[] useLaplaceValues = new boolean[0];
     boolean[] useMDLCorrectionValues = new boolean[0];
@@ -19,7 +19,7 @@ public class J48Factory extends AbstractAlgorithmFactory {
     @Override
     public ClassifierWithProperties[] generateAllClassifiers() {
         int[][] valueArrayIndexesArray = generateArrayIndexCartesianProduct(
-                confidenceFactorValues.length, numFoldsValues.length,
+                confidenceFactorValues.length, minNumObjPerLeafValues.length,
                 subtreeRaisingValues.length, useLaplaceValues.length,
                 useMDLCorrectionValues.length, unprunedValues.length);
 
@@ -39,9 +39,9 @@ public class J48Factory extends AbstractAlgorithmFactory {
             }
 
             if (valueArrayIndexes[1] > -1) {
-                Integer value = numFoldsValues[valueArrayIndexes[1]];
-                properties.put("NumFolds", value.toString());
-                classifier.setNumFolds(value);
+                Integer value = minNumObjPerLeafValues[valueArrayIndexes[1]];
+                properties.put("MinNumObj", value.toString());
+                classifier.setMinNumObj(value);
             }
 
             if (valueArrayIndexes[2] > -1) {
@@ -78,8 +78,8 @@ public class J48Factory extends AbstractAlgorithmFactory {
         this.confidenceFactorValues = confidenceFactorValues;
     }
 
-    public void setNumFoldsValues(Integer[] numFoldsValues) {
-        this.numFoldsValues = numFoldsValues;
+    public void setMinNumObjPerLeafValues(Integer[] minNumObjPerLeafValues) {
+        this.minNumObjPerLeafValues = minNumObjPerLeafValues;
     }
 
     public void setSubtreeRaisingValues(boolean[] subtreeRaisingValues) {
