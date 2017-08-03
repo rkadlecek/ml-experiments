@@ -26,7 +26,7 @@ public class SingleDataset {
             System.exit(1);
         }
 
-        Instances data = readDataFile("preprocessor_output.txt");
+        Instances data = readDataFile(args[0]);
 
         // Do 10-split cross validation
         Instances[][] split = crossValidationSplit(data, 10);
@@ -70,7 +70,7 @@ public class SingleDataset {
             // Calculate overall accuracy of current classifier on all splits
             AlgorithmStats algorithmStats = calculateStats(algorithmRuns);
 
-            System.out.print(algorithmStats.toString());
+            System.out.println(algorithmStats.toString());
         }
     }
 
