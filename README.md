@@ -45,7 +45,7 @@ There is a runnable class, called *Evaluation*, which launches the chosen algori
 The Evaluation application takes following command line arguments:
 
 ```
-usage: ant
+usage: Evaluation 
  -a,--algorithm <algorithm>                   algorithm to evaluate 
  -h,--help                                    print help
  -s,--testing-set <testing-set-file-path>     path to testing set file
