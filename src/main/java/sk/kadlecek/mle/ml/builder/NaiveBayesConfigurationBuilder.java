@@ -14,7 +14,7 @@ public class NaiveBayesConfigurationBuilder implements ClassifierConfigurationBu
         NaiveBayesFactory factory = new NaiveBayesFactory();
         boolean[] booleanRange = generateBooleanRange();
 
-        factory.setUseKernelEstimatorValues(booleanRange);
+        //factory.setUseKernelEstimatorValues(booleanRange);
         factory.setUseSupervisedDiscretizationValues(booleanRange);
 
         // evaluate

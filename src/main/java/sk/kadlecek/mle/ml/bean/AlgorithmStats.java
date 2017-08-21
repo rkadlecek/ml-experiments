@@ -8,6 +8,7 @@ public class AlgorithmStats {
     private String classifierName;
     private Map<String, String> properties = new LinkedHashMap<>();
 
+    private Double avgErrorRate;
     private Double avgWeightedAccuracy;
     private Double avgWeightedPrecision;
     private Double avgWeightedRrecall;
@@ -70,10 +71,19 @@ public class AlgorithmStats {
         this.properties = properties;
     }
 
+    public Double getAvgErrorRate() {
+        return avgErrorRate;
+    }
+
+    public void setAvgErrorRate(Double avgErrorRate) {
+        this.avgErrorRate = avgErrorRate;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(classifierName + ":");
 //        sb.append(" Average Accuracy:" + String.format("%.2f%%", getAvgWeightedAccuracy() * 100));
+        sb.append("\tError Rate:" + String.format("%.2f%%", getAvgErrorRate() * 100));
         sb.append("\tAverage Precision:" + String.format("%.2f%%", getAvgWeightedPrecision() * 100));
         sb.append("\tAverage Recall:" + String.format("%.2f%%", getAvgWeightedRecall() * 100));
         sb.append("\tAverage FMeasure:" + String.format("%.2f%%", getAvgWeightedFMeasure() * 100));
@@ -87,6 +97,7 @@ public class AlgorithmStats {
         if (!properties.isEmpty()) {
             sb.append(properties.toString() + "\t");
         }
+        sb.append(String.format("%.2f%%", getAvgErrorRate() * 100) + "\t");
         sb.append(String.format("%.2f%%", getAvgWeightedPrecision() * 100) + "\t");
         sb.append(String.format("%.2f%%", getAvgWeightedRecall() * 100) + "\t");
         sb.append(String.format("%.2f%%", getAvgWeightedFMeasure() * 100) + "\t");

@@ -21,7 +21,7 @@ public class DecisionTableConfigurationBuilder implements ClassifierConfiguratio
                 new BestFirst() {{ setDirection(new SelectedTag(SELECTION_FORWARD, TAGS_SELECTION)); }},
                 new BestFirst() {{ setDirection(new SelectedTag(SELECTION_BACKWARD, TAGS_SELECTION)); }},
                 new BestFirst() {{ setDirection(new SelectedTag(SELECTION_BIDIRECTIONAL, TAGS_SELECTION)); }},
-                new GreedyStepwise(),
+                //new GreedyStepwise(),
                 new GreedyStepwise() {{ setSearchBackwards(true);}}
         };
 

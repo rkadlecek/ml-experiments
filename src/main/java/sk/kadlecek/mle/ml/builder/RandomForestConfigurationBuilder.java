@@ -14,7 +14,7 @@ public class RandomForestConfigurationBuilder implements ClassifierConfiguration
         RandomForestFactory factory = new RandomForestFactory();
         boolean[] booleanRange = generateBooleanRange();
 
-        factory.setBatchSizeValues(generateIntegerRange(80, 120, 10));
+        //factory.setBatchSizeValues(generateIntegerRange(80, 120, 10));
         factory.setMaxDepthValues(generateIntegerRange(0, 15, 1));
         factory.setNumFeaturesValues(generateIntegerRange(0, 30, 1));
         factory.setNumBaggingIterationsValues(generateIntegerRange(80, 120, 10));

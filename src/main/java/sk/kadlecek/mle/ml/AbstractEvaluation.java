@@ -2,6 +2,7 @@ package sk.kadlecek.mle.ml;
 
 import sk.kadlecek.mle.ml.bean.AlgorithmStats;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.runnable.CrossValidationEvaluateClassifierCallable;
 import sk.kadlecek.mle.ml.runnable.EvaluateClassifierCallable;
 import weka.classifiers.Classifier;
 import weka.classifiers.meta.FilteredClassifier;
@@ -22,13 +23,30 @@ public class AbstractEvaluation {
         System.out.print("Param2: testingSet_file_path \n");
     }
 
-    protected static void evaluateClassifiers(ClassifierWithProperties[] models, Instances trainingData, Instances testingData,
-                                              boolean vectorizeStrings)
+    protected static void crossValidationEvaluateClassifiers(ClassifierWithProperties[] models, Instances dataset, int folds)
         throws Exception {
 
-        //ExecutorService cachedPool = Executors.newFixedThreadPool(4);
-        ExecutorService cachedPool = new ThreadPoolExecutor(4, 4, 60, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>());
+        ExecutorService threadPool = initThreadPool();
+
+        // Run for each model
+        Set<Future<AlgorithmStats>> futures = new HashSet<>();
+
+        for (int j = 0; j < models.length; j++) {
+
+            // submit threads
+            Future<AlgorithmStats> future = threadPool.submit(new CrossValidationEvaluateClassifierCallable(j, models[j], dataset, folds));
+            models[j] = null;
+            futures.add(future);
+        }
+
+        waitUntilComplete(futures, threadPool);
+    }
+
+    protected static void evaluateClassifiers(ClassifierWithProperties[] models, Instances trainingData, Instances testingData,
+                                              boolean vectorizeStrings)
+            throws Exception {
+
+        ExecutorService threadPool = initThreadPool();
 
         // Run for each model
         Set<Future<AlgorithmStats>> futures = new HashSet<>();
@@ -41,10 +59,37 @@ public class AbstractEvaluation {
             }
 
             // submit threads
-            Future<AlgorithmStats> future = cachedPool.submit(new EvaluateClassifierCallable(j, models[j], trainingData, testingData));
+            Future<AlgorithmStats> future = threadPool.submit(new EvaluateClassifierCallable(j, models[j], trainingData, testingData));
             models[j] = null;
             futures.add(future);
         }
+
+        waitUntilComplete(futures, threadPool);
+    }
+
+    private static ExecutorService initThreadPool() {
+        return new ThreadPoolExecutor(4, 4, 60, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>());
+    }
+
+    private static FilteredClassifier createFilteredStringClassifier(Classifier classifier, Instances trainingData) throws Exception {
+        StringToWordVector filter = new StringToWordVector();
+        filter.setInputFormat(trainingData);
+        filter.setIDFTransform(true);
+        filter.setTFTransform(true);
+
+        LovinsStemmer stemmer = new LovinsStemmer();
+        filter.setStemmer(stemmer);
+        filter.setLowerCaseTokens(true);
+
+        FilteredClassifier fc = new FilteredClassifier();
+        fc.setClassifier(classifier);
+        fc.setFilter(filter);
+        return fc;
+    }
+
+    private static void waitUntilComplete(Set<Future<AlgorithmStats>> futures, ExecutorService threadPool)
+            throws Exception {
 
         boolean run = true;
         while (run) {
@@ -62,28 +107,12 @@ public class AbstractEvaluation {
             }
 
             if (allCompleted) {
-                cachedPool.shutdown();
+                threadPool.shutdown();
                 run = false;
             }else {
                 Thread.sleep(500);
             }
         }
-    }
-
-    private static FilteredClassifier createFilteredStringClassifier(Classifier classifier, Instances trainingData) throws Exception {
-        StringToWordVector filter = new StringToWordVector();
-        filter.setInputFormat(trainingData);
-        filter.setIDFTransform(true);
-        filter.setTFTransform(true);
-
-        LovinsStemmer stemmer = new LovinsStemmer();
-        filter.setStemmer(stemmer);
-        filter.setLowerCaseTokens(true);
-
-        FilteredClassifier fc = new FilteredClassifier();
-        fc.setClassifier(classifier);
-        fc.setFilter(filter);
-        return fc;
     }
 
 }
