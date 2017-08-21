@@ -17,8 +17,8 @@ public class PARTConfigurationBuilder implements ClassifierConfigurationBuilder 
         factory.setMinNumObjValues(generateIntegerRange(0,10, 1));
 
         factory.setUnprunedValues(booleanRange);
-        factory.setBinarySplitsValues(booleanRange);
-        factory.setDoNotMakeSplitPointActualValueValues(booleanRange);
+        //factory.setBinarySplitsValues(booleanRange);
+        //factory.setDoNotMakeSplitPointActualValueValues(booleanRange);
         factory.setReducedErrorPruningValues(booleanRange);
         factory.setUseMDLcorrectionValues(booleanRange);
 

@@ -18,6 +18,7 @@ public class Common {
 
     public static AlgorithmStats calculateStats(ArrayList<AlgorithmRunResult> runResults) {
 
+        double sumErrorRate = 0;
         double sumWeightedAccuracy = 0;
         double sumWeightedPrecision = 0;
         double sumWeightedRecall = 0;
@@ -30,6 +31,7 @@ public class Common {
             AlgorithmRunResult result = runResults.get(i);
             Evaluation evaluation = result.getEvaluation();
 
+            sumErrorRate += evaluation.errorRate();
             sumWeightedAccuracy += calculateAccuracy(evaluation);
             sumWeightedPrecision += evaluation.weightedPrecision();
             sumWeightedRecall += evaluation.weightedRecall();
@@ -40,6 +42,7 @@ public class Common {
         AlgorithmStats stats = new AlgorithmStats();
         stats.setClassifierName(classifierName);
         if (runResults.size() > 0) {
+            stats.setAvgErrorRate(sumErrorRate / count);
             stats.setAvgWeightedAccuracy(sumWeightedAccuracy / count);
             stats.setAvgWeightedPrecision(sumWeightedPrecision / count);
             stats.setAvgWeightedRrecall(sumWeightedRecall / count);

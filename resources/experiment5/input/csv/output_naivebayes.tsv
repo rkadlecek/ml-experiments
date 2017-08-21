@@ -1,0 +1,2 @@
+{UseSupervisedDiscretization=true}	28.81%	76.71%	71.19%	71.37%	82.30ms
+{UseSupervisedDiscretization=false}	36.06%	68.04%	63.94%	63.67%	89.30ms

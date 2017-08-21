@@ -23,7 +23,7 @@ which then will be used for cross evaluation.
 The `SingleDataset` application takes 1 argument: path to the dataset to be used.  
 
 ```
-$ java -cp target/ml-experiments.jar sk.kadlecek.mle.SingleDataset resources/experiment1/phones_dataset.arff 
+$ java -cp target/ml-experiments.jar sk.kadlecek.mle.SingleDataset resources/experiment1/input/phones.arff 
 ```
 
 ### Running with separate training and testing datasets 
@@ -36,7 +36,7 @@ The `SeparateDatasets` application takes 2 arguments:
 + path to the testing dataset
  
 ```
-$ java -cp target/ml-experiments.jar sk.kadlecek.mle.SeparateDatasets resources/experiment2/phones_dataset.arff resources/experiment2/tablets_dataset.arff
+$ java -cp target/ml-experiments.jar sk.kadlecek.mle.SeparateDatasets resources/experiment2/input/phones.arff resources/experiment2/input/tablets.arff
 ```
 
 ### Running Algorithm Configuration Evaluation
@@ -69,14 +69,66 @@ usage: Evaluation
 Example:
 
 ```
-java -cp target/ml-experiments.jar sk.kadlecek.mle.Evaluation -a NaiveBayes -t resources/experiment4/gb_phones_dataset.arff -s resources/experiment4/me_phones_dataset.arff 
+java -cp target/ml-experiments.jar sk.kadlecek.mle.Evaluation -a NaiveBayes -t resources/experiment4/input/gb_phones.arff -s resources/experiment4/input/me_phones.arff 
 ```
 
 ```
-java -cp target/ml-experiments.jar sk.kadlecek.mle.Evaluation -a NaiveBayes -v -t resources/experiment5/gb_phones.arff -s resources/experiment5/me_phones.arff 
+java -cp target/ml-experiments.jar sk.kadlecek.mle.Evaluation -a NaiveBayes -t resources/experiment4/input/gb_phones.arff -s resources/experiment4/input/me_phones.arff 
 ```
 
 Note: Evaluation of configurations of some algorithms, especially *RandomForest* and *MultilayerPerceptron* may take long time to complete.
+
+#### Results
+
+The results are printed to stdout and have the following tab separated form:
+
+```
+{UseSupervisedDiscretization=true}	72.99%	50.27%	27.01%	23.86%	421.00ms
+{UseSupervisedDiscretization=false}	77.75%	25.50%	22.25%	20.70%	533.00ms
+```
+
+Columns description:
++ Algorithm configuration description - description of used configuration parameters.
++ Average Error Rate (%)
++ Average Precision (%)
++ Average Recall (%)
++ Average F-Measure (%)
++ Average time of the algorithm run (training + testing) (ms)
+
+### Running Algorithm Configuration N-Fold CrossValidation Evaluation
+
+This evaluation is similar to the previous method, but does not use 2 different datasets for training and testing. Instead,
+it takes a single dataset as input, which is then split into N random folds, or (training, testing) dataset pairs.
+
+For each pair a new classifier of the same kind is created, trained and evaluated. The resulting evaluation is an average
+of the metrics through N runs.
+
+```
+usage: CrossfoldEvaluation
+ -a,--algorithm <algorithm>               algorithm to evaluate (J48,
+                                          DecisionStump, DecisionTable,
+                                          PART, RandomForest, NaiveBayes,
+                                          SMO, MultilayerPerceptron)
+ -d,--data-set <dataset-file-path>        path to data set file
+ -f,--number-of-folds <number_of_folds>   Set number of folds for the
+                                          crossfold evaluation. Defaults to 10.
+ -h,--help                                print help
+ 
+```
+
+For list of supported Algorithms see previous section. 
+
+Example:
+
+```
+java -cp target/ml-experiments.jar sk.kadlecek.mle.CrossValidationEvaluation -a J48 -f 10 -d resources/experiment4/gb_phones_dataset.arff
+```
+
+Note: Evaluation of configurations of some algorithms, especially *RandomForest* and *MultilayerPerceptron* may take long time to complete.
+
+#### Results
+
+Results of this evaluation are printed to stdout in the same form as described in previous section.
 
 ## Resources
 

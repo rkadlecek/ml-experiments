@@ -62,7 +62,7 @@ public class TxtOutputWriter {
     }
 
     private void writeInputValuesHeader(BufferedWriter writer, List<String> classes) throws IOException {
-        writer.write("@RELATION phones\n\n");
+        writer.write("@RELATION products\n\n");
         writer.write("@ATTRIBUTE value STRING\n");
         writer.write("@ATTRIBUTE class {");
         for (int i = 0; i < classes.size(); i++) {
@@ -77,7 +77,7 @@ public class TxtOutputWriter {
     }
 
     private void writeHeader(BufferedWriter writer, List<String> classes) throws IOException {
-        writer.write("@RELATION phones\n\n");
+        writer.write("@RELATION products\n\n");
         writer.write("@ATTRIBUTE numberOfWords NUMERIC\n");
         writer.write("@ATTRIBUTE numberOfTotalCharacters NUMERIC\n");
         writer.write("@ATTRIBUTE numberOfAlphabetCharacters NUMERIC\n");
