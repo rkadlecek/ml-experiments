@@ -7,6 +7,7 @@ import weka.classifiers.Evaluation;
 import weka.core.Instances;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
@@ -20,40 +21,39 @@ public class CrossValidationEvaluateClassifierCallable implements Callable<Algor
     private ClassifierWithProperties modelWithProperties;
     private Instances dataset;
     private int folds;
+    private int runs;
 
-    public CrossValidationEvaluateClassifierCallable(int id, ClassifierWithProperties modelWithProperties, Instances dataset, int folds) {
+    public  CrossValidationEvaluateClassifierCallable(int id, ClassifierWithProperties modelWithProperties, Instances dataset, int folds, int runs) {
         this.id = id;
         this.modelWithProperties = modelWithProperties;
         this.dataset = dataset;
         this.folds = folds;
+        this.runs = runs;
     }
 
     @Override
     public AlgorithmStats call() throws Exception {
-        // split dataset into <number_of_folds> training and testing split datasets
-        Instances[][] splits = crossValidationSplit(dataset, folds);
-
-        // Separate split into training and testing arrays
-        Instances[] trainingSplits = splits[0];
-        Instances[] testingSplits = splits[1];
-
         ArrayList<AlgorithmRunResult> algorithmRuns = new ArrayList<>();
 
-        for (int i = 0; i < trainingSplits.length; i++) {
+        for (int i = 0; i < runs; i++) {
+
+            Evaluation validation = new Evaluation(dataset);
+
             Long startTime = System.currentTimeMillis();
+            // randomize the data, stratify test/training set and run #folds crossvalidation
 
-            Evaluation validation = classify(modelWithProperties.getClassifier(), trainingSplits[i], testingSplits[i]);
-
+            validation.crossValidateModel(modelWithProperties.getClassifier(), dataset, folds, new Random(1));
             Long endTime = System.currentTimeMillis();
 
             AlgorithmRunResult algorithmRunResult =
                     new AlgorithmRunResult(modelWithProperties.getClassifierSimpleName(), validation, endTime - startTime);
 
             algorithmRuns.add(algorithmRunResult);
+
         }
 
-        // Calculate overall accuracy of current classifier on all splits
         AlgorithmStats algorithmStats = calculateStats(algorithmRuns);
+        algorithmStats.setClassifierId(id);
 
         algorithmStats.setProperties(modelWithProperties.getProperties());
         return algorithmStats;

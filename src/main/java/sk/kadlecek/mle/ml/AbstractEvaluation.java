@@ -10,9 +10,7 @@ import weka.core.Instances;
 import weka.core.stemmers.LovinsStemmer;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
 
 public class AbstractEvaluation {
@@ -23,7 +21,8 @@ public class AbstractEvaluation {
         System.out.print("Param2: testingSet_file_path \n");
     }
 
-    protected static void crossValidationEvaluateClassifiers(ClassifierWithProperties[] models, Instances dataset, int folds)
+    protected static void crossValidationEvaluateClassifiers(
+            ClassifierWithProperties[] models, Instances dataset, int folds, int runs)
         throws Exception {
 
         ExecutorService threadPool = initThreadPool();
@@ -34,7 +33,9 @@ public class AbstractEvaluation {
         for (int j = 0; j < models.length; j++) {
 
             // submit threads
-            Future<AlgorithmStats> future = threadPool.submit(new CrossValidationEvaluateClassifierCallable(j, models[j], dataset, folds));
+            Future<AlgorithmStats> future = threadPool.submit(
+                    new CrossValidationEvaluateClassifierCallable(j, models[j], dataset, folds, runs)
+            );
             models[j] = null;
             futures.add(future);
         }
@@ -90,6 +91,8 @@ public class AbstractEvaluation {
 
     private static void waitUntilComplete(Set<Future<AlgorithmStats>> futures, ExecutorService threadPool)
             throws Exception {
+
+        Map<Integer, AlgorithmStats> statsMap = new HashMap<>();
 
         boolean run = true;
         while (run) {
