@@ -13,6 +13,7 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
     private static final String ALGORITHM_OPT = "algorithm";
     private static final String DATASET_OPT = "data-set";
     private static final String NUMBER_OF_FOLDS_OPT = "number-of-folds";
+    private static final String NUMBER_OF_RUNS_OPT = "number-of-runs";
     private static final String HELP_OPT = "help";
 
     public static void main(String[] args) throws Exception {
@@ -28,16 +29,24 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
         Instances dataset = readDataFile(commandLine.getOptionValue(DATASET_OPT));
 
         String algorithm = commandLine.getOptionValue(ALGORITHM_OPT);
-        int numberOfFolds = 10;
-        String numberOfFoldsCliValue = commandLine.getOptionValue(NUMBER_OF_FOLDS_OPT);
-        if (numberOfFoldsCliValue != null) {
-            numberOfFolds = Integer.parseInt(numberOfFoldsCliValue);
-        }
+
+        int numberOfFolds = parseIntOption(commandLine, NUMBER_OF_FOLDS_OPT, 10);
+        int numberOfRuns = parseIntOption(commandLine, NUMBER_OF_RUNS_OPT, 1);
 
         ClassifierConfigurationBuilder builder = getBuilderForAlgorithm(algorithm);
 
         ClassifierWithProperties[] models = builder.buildClassifiers();
-        crossValidationEvaluateClassifiers(models, dataset, numberOfFolds);
+
+        crossValidationEvaluateClassifiers(models, dataset, numberOfFolds, numberOfRuns);
+    }
+
+    private static int parseIntOption(CommandLine commandLine, String optionName, int defaultValue) {
+        String cliValue = commandLine.getOptionValue(optionName);
+        if (cliValue != null) {
+            return Integer.parseInt(cliValue);
+        } else {
+            return defaultValue;
+        }
     }
 
     private static Options defineCommandlineOptions() {
@@ -59,11 +68,19 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
                 .optionalArg(false)
                 .build();
 
-        Option vectorizeStrings = Option.builder("f")
+        Option numOfFolds = Option.builder("f")
                 .longOpt(NUMBER_OF_FOLDS_OPT)
                 .desc("Set number of folds for the crossfold evaluation")
                 .hasArg()
                 .argName("number_of_folds")
+                .optionalArg(true)
+                .build();
+
+        Option numOfRuns = Option.builder("r")
+                .longOpt(NUMBER_OF_RUNS_OPT)
+                .desc("Set number of runs of the crossfold evaluation")
+                .hasArg()
+                .argName("number_of_runs")
                 .optionalArg(true)
                 .build();
 
@@ -75,7 +92,8 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
         options.addOption(algorithm);
         options.addOption(dataset);
         options.addOption(help);
-        options.addOption(vectorizeStrings);
+        options.addOption(numOfFolds);
+        options.addOption(numOfRuns);
         return options;
     }
 

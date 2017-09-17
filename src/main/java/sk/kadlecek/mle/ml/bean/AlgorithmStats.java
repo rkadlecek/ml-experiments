@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class AlgorithmStats {
 
+    private Integer classifierId;
     private String classifierName;
     private Map<String, String> properties = new LinkedHashMap<>();
 
@@ -77,6 +78,14 @@ public class AlgorithmStats {
 
     public void setAvgErrorRate(Double avgErrorRate) {
         this.avgErrorRate = avgErrorRate;
+    }
+
+    public Integer getClassifierId() {
+        return classifierId;
+    }
+
+    public void setClassifierId(Integer classifierId) {
+        this.classifierId = classifierId;
     }
 
     @Override

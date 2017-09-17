@@ -100,8 +100,11 @@ Columns description:
 This evaluation is similar to the previous method, but does not use 2 different datasets for training and testing. Instead,
 it takes a single dataset as input, which is then split into N random folds, or (training, testing) dataset pairs.
 
+The number of runs of the crossfold validation can be also configured using the `-r` option (defaults to 10 if not provided).
+Usually is recommended to use 10-fold cross validation and run it 10 times. 
+
 For each pair a new classifier of the same kind is created, trained and evaluated. The resulting evaluation is an average
-of the metrics through N runs.
+of the metrics through all runs.
 
 ```
 usage: CrossfoldEvaluation
@@ -113,7 +116,8 @@ usage: CrossfoldEvaluation
  -f,--number-of-folds <number_of_folds>   Set number of folds for the
                                           crossfold evaluation. Defaults to 10.
  -h,--help                                print help
- 
+ -r,--number-of-runs <number_of_runs>     Set number of runs of the
+                                           crossfold evaluation
 ```
 
 For list of supported Algorithms see previous section. 
@@ -121,7 +125,7 @@ For list of supported Algorithms see previous section.
 Example:
 
 ```
-java -cp target/ml-experiments.jar sk.kadlecek.mle.CrossValidationEvaluation -a J48 -f 10 -d resources/experiment4/gb_phones_dataset.arff
+java -cp target/ml-experiments.jar sk.kadlecek.mle.CrossValidationEvaluation -a J48 -f 10 -r 10 -d resources/experiment4/gb_phones_dataset.arff
 ```
 
 Note: Evaluation of configurations of some algorithms, especially *RandomForest* and *MultilayerPerceptron* may take long time to complete.
