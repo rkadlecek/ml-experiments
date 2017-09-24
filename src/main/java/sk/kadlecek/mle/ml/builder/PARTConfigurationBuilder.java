@@ -26,4 +26,25 @@ public class PARTConfigurationBuilder implements ClassifierConfigurationBuilder 
         // evaluate
         return factory.generateAllClassifiers();
     }
+
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+
+        PARTFactory factory = new PARTFactory();
+
+        Float[] confidenceFactorValues = { 0.1f };
+        Integer[] minNumObjPerLeafValues = { 1 };
+        boolean[] unprunedValues = { false };
+        boolean[] reducedErrorPruningValues = { false };
+        boolean[] mldCorrectionValues = { true };
+
+        factory.setConfidenceFactorValues(confidenceFactorValues);
+        factory.setMinNumObjValues(minNumObjPerLeafValues);
+
+        factory.setUnprunedValues(unprunedValues);
+        factory.setReducedErrorPruningValues(reducedErrorPruningValues);
+        factory.setUseMDLcorrectionValues(mldCorrectionValues);
+
+        return factory.generateAllClassifiers()[0];
+    }
 }

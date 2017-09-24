@@ -20,4 +20,16 @@ public class NaiveBayesConfigurationBuilder implements ClassifierConfigurationBu
         // evaluate
         return factory.generateAllClassifiers();
     }
+
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+
+        NaiveBayesFactory factory = new NaiveBayesFactory();
+
+        boolean[] useSupervisedDiscretizationValues = { true };
+
+        factory.setUseSupervisedDiscretizationValues(useSupervisedDiscretizationValues);
+
+        return factory.generateAllClassifiers()[0];
+    }
 }

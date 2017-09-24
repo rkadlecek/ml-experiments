@@ -1,0 +1,1 @@
+{MaxDepth=15, NumFeatures=3, NumBaggingIterations=120, BreakTiesRandomly=true}	12.27%	87.11%	87.73%	87.26%	10641.50ms

@@ -135,7 +135,7 @@ public class InputValueWithFeatures {
         sb.append(getNumberOfWhiteSpaceCharacters() + "" + separator);
         sb.append(getNumberOfSpecialCharacters() + "" + separator);
         sb.append(isNumericValue() + "" + separator);
-        sb.append(isIntegralNumericValue() + "" + separator);
+        //sb.append(isIntegralNumericValue() + "" + separator);
         sb.append(isDecimalNumericValue() + "" + separator);
         sb.append(isPrefixedNumber() + "" + separator);
         sb.append(isPostfixedNumber());
