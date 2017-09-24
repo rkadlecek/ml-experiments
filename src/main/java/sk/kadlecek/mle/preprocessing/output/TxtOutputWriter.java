@@ -85,7 +85,7 @@ public class TxtOutputWriter {
         writer.write("@ATTRIBUTE numberOfWhiteSpaceCharacters NUMERIC\n");
         writer.write("@ATTRIBUTE numberOfSpecialCharacters NUMERIC\n");
         writer.write("@ATTRIBUTE isNumericValue {true, false}\n");
-        writer.write("@ATTRIBUTE isIntegralNumericValue {true, false}\n");
+        //writer.write("@ATTRIBUTE isIntegralNumericValue {true, false}\n");
         writer.write("@ATTRIBUTE isDecimalNumericValue {true, false}\n");
         writer.write("@ATTRIBUTE isPrefixedNumber {true, false}\n");
         writer.write("@ATTRIBUTE isPostfixedNumber {true, false}\n");

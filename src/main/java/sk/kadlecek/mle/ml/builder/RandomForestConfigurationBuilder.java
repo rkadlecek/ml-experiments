@@ -1,6 +1,7 @@
 package sk.kadlecek.mle.ml.builder;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.factory.J48Factory;
 import sk.kadlecek.mle.ml.factory.RandomForestFactory;
 
 import static sk.kadlecek.mle.ml.Common.generateBooleanRange;
@@ -24,4 +25,24 @@ public class RandomForestConfigurationBuilder implements ClassifierConfiguration
         // evaluate
         return factory.generateAllClassifiers();
     }
+
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+
+        RandomForestFactory factory = new RandomForestFactory();;
+
+        Integer[] maxDepthValues = { 15 };
+        Integer[] numFeaturesValues = { 3 };
+        Integer[] numBaggingIterationsValues = { 120 };
+        boolean[] breakTiesRandomlyValues = { true };
+
+        factory.setMaxDepthValues(maxDepthValues);
+        factory.setNumFeaturesValues(numFeaturesValues);
+        factory.setNumBaggingIterationsValues(numBaggingIterationsValues);
+
+        factory.setBreakTiesRandomlyValues(breakTiesRandomlyValues);
+
+        return factory.generateAllClassifiers()[0];
+    }
+
 }

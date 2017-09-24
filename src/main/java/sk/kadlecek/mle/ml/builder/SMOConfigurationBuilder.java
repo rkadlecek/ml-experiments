@@ -31,4 +31,20 @@ public class SMOConfigurationBuilder implements ClassifierConfigurationBuilder {
         // evaluate
         return factory.generateAllClassifiers();
     }
+
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+
+        SMOFactory factory = new SMOFactory();
+
+        Double[] complexityConstantValues = { 1.4d };
+        Kernel[] kernelValues = { new Puk() };
+        boolean[] buildCalibrationModelValues = { true };
+
+        factory.setComplexityConstantValues(complexityConstantValues);
+        factory.setKernelValues(kernelValues);
+        factory.setBuildCalibrationModelValues(buildCalibrationModelValues);
+
+        return factory.generateAllClassifiers()[0];
+    }
 }

@@ -1,0 +1,1 @@
+{ConfidenceFactor=0.1, MinNumObjPerLeaf=1, ReducedErrorPruning=false, Unpruned=false, MDLCorrection=true}	12.57%	87.06%	87.43%	87.12%	3216.10ms

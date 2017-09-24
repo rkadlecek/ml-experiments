@@ -30,4 +30,30 @@ public class MultilayerPerceptronConfigurationBuilder implements ClassifierConfi
         // evaluate
         return factory.generateAllClassifiers();
     }
+
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+
+        // build classifiers
+        MultilayerPerceptronFactory factory = new MultilayerPerceptronFactory();
+
+        String[] hiddenLayersValues = { "a,t" };
+        Double[] learningRateValues = { 0.3 };
+        Double[] momentumValues = { 0.1 };
+        Integer[] trainingTimeEpochsValues = { 500 };
+        boolean[] decayValues = { false };
+        boolean[] normalizeAttributesValues = { true };
+
+
+        factory.setHiddenLayersValues(hiddenLayersValues);
+        factory.setLearningRateValues(learningRateValues);
+        factory.setMomentumValues(momentumValues);
+
+        factory.setTrainingTimeEpochValues(trainingTimeEpochsValues);
+
+        factory.setDecayValues(decayValues);
+        factory.setNormalizeAttributesValues(normalizeAttributesValues);
+
+        return factory.generateAllClassifiers()[0];
+    }
 }

@@ -35,7 +35,8 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
 
         ClassifierConfigurationBuilder builder = getBuilderForAlgorithm(algorithm);
 
-        ClassifierWithProperties[] models = builder.buildClassifiers();
+        //ClassifierWithProperties[] models = builder.buildClassifiers();
+        ClassifierWithProperties[] models = { builder.bestConfiguration() };
 
         crossValidationEvaluateClassifiers(models, dataset, numberOfFolds, numberOfRuns);
     }

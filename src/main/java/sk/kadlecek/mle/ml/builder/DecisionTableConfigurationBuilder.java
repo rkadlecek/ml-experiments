@@ -31,4 +31,9 @@ public class DecisionTableConfigurationBuilder implements ClassifierConfiguratio
         // evaluate
         return factory.generateAllClassifiers();
     }
+
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+        return null;
+    }
 }

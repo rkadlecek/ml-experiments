@@ -22,4 +22,20 @@ public class J48ConfigurationBuilder implements ClassifierConfigurationBuilder {
         return factory.generateAllClassifiers();
     }
 
+    @Override
+    public ClassifierWithProperties bestConfiguration() {
+
+        J48Factory factory = new J48Factory();
+
+        Integer[] minNumObjPerLeafValues = { 1 };
+        boolean[] unprunedValues = { true };
+        boolean[] mldCorrectionValues = { false };
+
+        factory.setMinNumObjPerLeafValues(minNumObjPerLeafValues);
+        factory.setUseMDLCorrectionValues(mldCorrectionValues);
+        factory.setUnprunedValues(unprunedValues);
+
+        return factory.generateAllClassifiers()[0];
+    }
+
 }

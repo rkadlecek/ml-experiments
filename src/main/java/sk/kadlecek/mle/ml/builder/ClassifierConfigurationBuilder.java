@@ -5,4 +5,6 @@ import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 public interface ClassifierConfigurationBuilder {
 
     ClassifierWithProperties[] buildClassifiers();
+
+    ClassifierWithProperties bestConfiguration();
 }
