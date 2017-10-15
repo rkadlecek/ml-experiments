@@ -35,7 +35,7 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
     }
 
     private static Options defineCommandlineOptions() {
-        Options options = CommandLineUtils.defineCommonCommandlineOptions();
+        Options options = CommandLineUtils.defineCommonAndBestConfigurationOnlyOptions();
 
         Option dataset = Option.builder("d")
                 .longOpt(DATASET_OPT)

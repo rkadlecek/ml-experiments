@@ -172,13 +172,46 @@ usage: Prediction
 Example:
 
 ```
-java -cp target/ml-experiments.jar sk.kadlecek.mle.Prediction -a J48 -t resources/experiment9/input/arff/gb_db_training_dataset.arff  -s resources/experiment9/input/arff/me_testing_dataset.arff -o resources/experiment9/output/ 
+java -cp target/ml-experiments.jar sk.kadlecek.mle.Prediction -a J48 -t resources/experiment9/input/arff/gb_db_training_dataset.arff -s resources/experiment9/input/arff/me_testing_dataset.arff -o resources/experiment9/output/ 
 ```
 
 #### Output
 The results are stored as separate files inside the given output path. Each file name is in form `algorithm_N.arff`, where `algorithm`
 determines the used algorithm, and `N` determines the configuration of the algorithm. Also, a mapping file called `algorithm_mapping.txt`
 is generated inside the output folder. This file contains the mapping before the `N-indices` and the corresponding algorithm properties. 
+ 
+### Interactive Class Prediction
+
+This application accepts a tranining set and classifier algorithm name. It trains given classifier using the training dataset,
+and then provides an interactive shell, where the user can query the classifier for any string input.
+
+To exit the application, type `exit` or press `ctrl+d`.
+
+
+Usage:
+```
+usage: InteractivePrediction
+ -a,--algorithm <algorithm>                   algorithm to evaluate (J48,
+                                              DecisionStump,
+                                              DecisionTable, PART,
+                                              RandomForest, NaiveBayes,
+                                              SMO, MultilayerPerceptron)
+ -h,--help                                    print help
+ -t,--training-set <training-set-file-path>   path to training set file
+```
+
+Example:
+
+```
+java -cp target/ml-experiments.jar sk.kadlecek.mle.InteractivePrediction -a J48 -t resources/experiment9/input/arff/gb_db_training_dataset.arff 
+```
+
+```
+Classificating using RandomForest. Type 'exit' to exit.
+Enter input to classify: 3gb
+Result[3gb]: 1,3,2,1,0,0,false,false,false,false,true,RAM_CAPACITY
+```
+ 
  
 ## Resources
 

@@ -1,21 +1,17 @@
 package sk.kadlecek.mle;
 
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import sk.kadlecek.mle.ml.AbstractEvaluation;
-import sk.kadlecek.mle.ml.bean.ClassifierPredictionResult;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.utils.CommandLineUtils;
 import sk.kadlecek.mle.preprocessing.featuredetection.InputValueWithFeatures;
 import sk.kadlecek.mle.preprocessing.featuredetection.TextFeatureDetector;
 import sk.kadlecek.mle.preprocessing.input.InputValue;
-import weka.classifiers.Classifier;
 import weka.core.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Map;
 import java.util.Scanner;
 
 import static sk.kadlecek.mle.ml.Common.readDataFile;

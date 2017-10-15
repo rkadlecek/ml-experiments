@@ -21,19 +21,19 @@ public class CommandLineUtils {
                 .optionalArg(false)
                 .build();
 
-        Option bestConfigOnly = Option.builder("b")
-                .longOpt(BEST_CONFIGURATION_ONLY_OPT)
-                .desc("Use only best algorithm configuration for the same algorithm, do not evaluate multiple algorithm configurations")
-                .build();
-
         Option help = Option.builder("h")
                 .longOpt(HELP_OPT)
                 .desc("print help")
                 .build();
 
         options.addOption(algorithm);
-        options.addOption(bestConfigOnly);
         options.addOption(help);
+        return options;
+    }
+
+    public static Options defineCommonAndBestConfigurationOnlyOptions() {
+        Options options = defineCommonCommandlineOptions();
+        options.addOption(defineBestConfigurationOnlyOption());
         return options;
     }
 
@@ -46,6 +46,7 @@ public class CommandLineUtils {
     public static Options defineCommonAndTrainingTestingDatasetOptions() {
         Options options = defineCommonCommandlineOptions();
 
+        Option bestConfigOnly = defineBestConfigurationOnlyOption();
         Option trainingSet = defineTrainingSetOption();
 
         Option testingSet = Option.builder("s")
@@ -56,6 +57,7 @@ public class CommandLineUtils {
                 .optionalArg(false)
                 .build();
 
+        options.addOption(bestConfigOnly);
         options.addOption(trainingSet);
         options.addOption(testingSet);
         return options;
@@ -68,6 +70,13 @@ public class CommandLineUtils {
                 .hasArg()
                 .argName("training-set-file-path")
                 .optionalArg(false)
+                .build();
+    }
+
+    public static Option defineBestConfigurationOnlyOption() {
+        return Option.builder("b")
+                .longOpt(BEST_CONFIGURATION_ONLY_OPT)
+                .desc("Use only best algorithm configuration for the same algorithm, do not evaluate multiple algorithm configurations")
                 .build();
     }
 
