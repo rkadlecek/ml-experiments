@@ -3,7 +3,7 @@ package sk.kadlecek.mle.ml.bean;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class AlgorithmStats {
+public class AlgorithmStats implements ClassifierRunnableResult {
 
     private Integer classifierId;
     private String classifierName;
@@ -80,6 +80,7 @@ public class AlgorithmStats {
         this.avgErrorRate = avgErrorRate;
     }
 
+    @Override
     public Integer getClassifierId() {
         return classifierId;
     }

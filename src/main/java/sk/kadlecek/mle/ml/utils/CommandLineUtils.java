@@ -7,6 +7,8 @@ public class CommandLineUtils {
     private static final String ALGORITHM_OPT = "algorithm";
     private static final String BEST_CONFIGURATION_ONLY_OPT = "best-config-only";
     private static final String HELP_OPT = "help";
+    private static final String TRAINING_SET_OPT = "training-set";
+    private static final String TESTING_SET_OPT = "testing-set";
 
     public static Options defineCommonCommandlineOptions() {
         Options options = new Options();
@@ -35,7 +37,31 @@ public class CommandLineUtils {
         return options;
     }
 
-    public static boolean hasPrintHelpOption(CommandLine commandLine) {
+    public static Options defineCommonAndTrainingTestingDatasetOptions() {
+        Options options = defineCommonCommandlineOptions();
+
+        Option trainingSet = Option.builder("t")
+                .longOpt(TRAINING_SET_OPT)
+                .desc("path to training set file")
+                .hasArg()
+                .argName("training-set-file-path")
+                .optionalArg(false)
+                .build();
+
+        Option testingSet = Option.builder("s")
+                .longOpt(TESTING_SET_OPT)
+                .desc("path to testing set file")
+                .hasArg()
+                .argName("testing-set-file-path")
+                .optionalArg(false)
+                .build();
+
+        options.addOption(trainingSet);
+        options.addOption(testingSet);
+        return options;
+    }
+
+    private static boolean hasPrintHelpOption(CommandLine commandLine) {
         return commandLine.hasOption(HELP_OPT);
     }
 
@@ -54,7 +80,15 @@ public class CommandLineUtils {
         return commandLine.getOptionValue(ALGORITHM_OPT);
     }
 
-    public static void printHelp(String name, Options options) {
+    public static String getTrainingDataset(CommandLine commandLine) {
+        return commandLine.getOptionValue(TRAINING_SET_OPT);
+    }
+
+    public static String getTestingDataset(CommandLine commandLine) {
+        return commandLine.getOptionValue(TESTING_SET_OPT);
+    }
+
+    private static void printHelp(String name, Options options) {
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp( name, options );
     }

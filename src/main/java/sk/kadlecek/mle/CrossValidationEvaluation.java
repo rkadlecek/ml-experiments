@@ -2,9 +2,12 @@ package sk.kadlecek.mle;
 
 import org.apache.commons.cli.*;
 import sk.kadlecek.mle.ml.AbstractEvaluation;
+import sk.kadlecek.mle.ml.bean.AlgorithmStats;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.utils.CommandLineUtils;
 import weka.core.Instances;
+
+import java.util.Map;
 
 import static sk.kadlecek.mle.ml.Common.readDataFile;
 
@@ -27,7 +30,8 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
         int numberOfRuns = CommandLineUtils.parseIntOption(commandLine, NUMBER_OF_RUNS_OPT, 1);
 
         ClassifierWithProperties[] models = buildClassifiers(commandLine);
-        crossValidationEvaluateClassifiers(models, dataset, numberOfFolds, numberOfRuns);
+        Map<Integer, AlgorithmStats> evaluationResults = crossValidationEvaluateClassifiers(models, dataset, numberOfFolds, numberOfRuns);
+        printAlgorithmStats(evaluationResults.values());
     }
 
     private static Options defineCommandlineOptions() {

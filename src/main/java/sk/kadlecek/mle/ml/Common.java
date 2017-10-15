@@ -9,9 +9,7 @@ import weka.classifiers.evaluation.NominalPrediction;
 import weka.classifiers.evaluation.Prediction;
 import weka.core.Instances;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +92,14 @@ public class Common {
         dataInstances.setClassIndex(dataInstances.numAttributes() - 1);
 
         return dataInstances;
+    }
+
+    public static void writeDataFile(String filename, Instances datafile) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        writer.write(datafile.toString());
+        writer.newLine();
+        writer.flush();
+        writer.close();
     }
 
     public static Evaluation classify(Classifier model,

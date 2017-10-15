@@ -1,20 +1,20 @@
-package sk.kadlecek.mle;
+package sk.kadlecek.mle.ml;
 
-import org.apache.commons.cli.*;
-import sk.kadlecek.mle.ml.AbstractEvaluation;
-import sk.kadlecek.mle.ml.bean.AlgorithmStats;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import sk.kadlecek.mle.ml.bean.ClassifierPredictionResult;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.utils.CommandLineUtils;
 import weka.core.Instances;
 
 import java.util.Map;
 
-import static sk.kadlecek.mle.ml.Common.*;
+import static sk.kadlecek.mle.ml.Common.readDataFile;
 
-public class Evaluation extends AbstractEvaluation {
+public class Prediction extends AbstractEvaluation {
 
-    private static final String VECTORIZE_STRINGS_OPT = "vectorize-strings";
-
+    private static final String OUTPUT_PATH = "output-path";
 
     public static void main(String[] args) throws Exception {
         // parse commandline arguments
@@ -26,19 +26,22 @@ public class Evaluation extends AbstractEvaluation {
         Instances trainingData = readDataFile(CommandLineUtils.getTrainingDataset(commandLine));
         Instances testingData = readDataFile(CommandLineUtils.getTestingDataset(commandLine));
 
-        boolean vectorizeStrings = commandLine.hasOption(VECTORIZE_STRINGS_OPT);
+        String outputPath = commandLine.getOptionValue(OUTPUT_PATH);
 
         ClassifierWithProperties[] models = buildClassifiers(commandLine);
-        Map<Integer, AlgorithmStats> evaluationResults = evaluateClassifiers(models, trainingData, testingData, vectorizeStrings);
-        printAlgorithmStats(evaluationResults.values());
+        Map<Integer, ClassifierPredictionResult> predictionResults = predictUsingClassifiers(models, trainingData, testingData);
+        savePredictionResults(predictionResults, outputPath);
     }
+
 
     private static Options defineCommandlineOptions() {
         Options options = CommandLineUtils.defineCommonAndTrainingTestingDatasetOptions();
-
-        Option vectorizeStrings = Option.builder("v")
-                .longOpt(VECTORIZE_STRINGS_OPT)
-                .desc("vectorize strings (if input value is a string instead of set of features)")
+        Option vectorizeStrings = Option.builder("o")
+                .longOpt(OUTPUT_PATH)
+                .desc("Absolute Path (directory) on the filesystem, where the result file(s) will be stored.)")
+                .hasArg()
+                .argName("output-path")
+                .optionalArg(false)
                 .build();
 
         options.addOption(vectorizeStrings);
