@@ -14,7 +14,10 @@ public class Preprocessor {
 
     public static void main(String[] args) throws Exception {
         InputReader inputReader = new CsvInputReader();
-        InputValue[] values = inputReader.readInputValues("resources/experiment7/input/gb_me_db_dataset.csv");
+
+        String filename = "me_db_training_dataset";
+
+        InputValue[] values = inputReader.readInputValues("resources/experiment8/input/csv/" + filename + ".csv");
         //InputValue[] values = inputReader.readInputValues("preprocessor_sample.csv");
 
         TextFeatureDetector featureDetector = new TextFeatureDetector();
@@ -27,7 +30,7 @@ public class Preprocessor {
 
         TxtOutputWriter writer = new TxtOutputWriter();
         //writer.write(featuresList, "mobileshop_phones_dataset.arff", ',', true);
-        writer.write(featuresList, "resources/experiment7/input/gb_me_db_dataset_13.arff", ',', true);
+        writer.write(featuresList, "resources/experiment8/input/arff/" + filename + ".arff", ',', true);
         //writer.writeInputValues(values, "resources/experiment5/gb_me_db_dataset.arff", ',');
 
         System.out.println("Done");

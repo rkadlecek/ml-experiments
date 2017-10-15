@@ -11,6 +11,7 @@ import static sk.kadlecek.mle.ml.Common.readDataFile;
 public class CrossValidationEvaluation extends AbstractEvaluation {
 
     private static final String ALGORITHM_OPT = "algorithm";
+    private static final String BEST_CONFIGURATION_ONLY_OPT = "best-config-only";
     private static final String DATASET_OPT = "data-set";
     private static final String NUMBER_OF_FOLDS_OPT = "number-of-folds";
     private static final String NUMBER_OF_RUNS_OPT = "number-of-runs";
@@ -35,9 +36,10 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
 
         ClassifierConfigurationBuilder builder = getBuilderForAlgorithm(algorithm);
 
-        //ClassifierWithProperties[] models = builder.buildClassifiers();
-        ClassifierWithProperties[] models = { builder.bestConfiguration() };
-
+        ClassifierWithProperties[] models = builder.buildClassifiers();
+        if (commandLine.hasOption(BEST_CONFIGURATION_ONLY_OPT)) {
+            models = new ClassifierWithProperties[]{ builder.bestConfiguration() };
+        }
         crossValidationEvaluateClassifiers(models, dataset, numberOfFolds, numberOfRuns);
     }
 
@@ -59,6 +61,11 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
                 .hasArg()
                 .argName("algorithm")
                 .optionalArg(false)
+                .build();
+
+        Option bestConfigOnly = Option.builder("b")
+                .longOpt(BEST_CONFIGURATION_ONLY_OPT)
+                .desc("Use only best algorithm configuration for the same algorithm, do not evaluate multiple algorithm configurations")
                 .build();
 
         Option dataset = Option.builder("d")
@@ -91,6 +98,7 @@ public class CrossValidationEvaluation extends AbstractEvaluation {
                 .build();
 
         options.addOption(algorithm);
+        options.addOption(bestConfigOnly);
         options.addOption(dataset);
         options.addOption(help);
         options.addOption(numOfFolds);
