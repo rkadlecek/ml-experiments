@@ -47,6 +47,10 @@ The Evaluation application takes following command line arguments:
 ```
 usage: Evaluation 
  -a,--algorithm <algorithm>                   algorithm to evaluate 
+ -b,--best-config-only                        Use only best algorithm
+                                              configuration for the same algorithm, do not
+                                              evaluate multiple algorithm
+                                              configurations
  -h,--help                                    print help
  -s,--testing-set <testing-set-file-path>     path to testing set file
  -t,--training-set <training-set-file-path>   path to training set file
@@ -112,6 +116,10 @@ usage: CrossfoldEvaluation
                                           DecisionStump, DecisionTable,
                                           PART, RandomForest, NaiveBayes,
                                           SMO, MultilayerPerceptron)
+-b,--best-config-only                     Use only best algorithm
+                                          configuration for the same algorithm, do not
+                                          evaluate multiple algorithm
+                                          configurations                                         
  -d,--data-set <dataset-file-path>        path to data set file
  -f,--number-of-folds <number_of_folds>   Set number of folds for the
                                           crossfold evaluation. Defaults to 10.

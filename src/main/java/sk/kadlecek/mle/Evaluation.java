@@ -11,10 +11,12 @@ import static sk.kadlecek.mle.ml.Common.*;
 public class Evaluation extends AbstractEvaluation {
 
     private static final String ALGORITHM_OPT = "algorithm";
+    private static final String BEST_CONFIGURATION_ONLY_OPT = "best-config-only";
     private static final String TRAINING_SET_OPT = "training-set";
     private static final String TESTING_SET_OPT = "testing-set";
     private static final String HELP_OPT = "help";
     private static final String VECTORIZE_STRINGS_OPT = "vectorize-strings";
+
 
     public static void main(String[] args) throws Exception {
         // parse commandline arguments
@@ -35,6 +37,9 @@ public class Evaluation extends AbstractEvaluation {
         ClassifierConfigurationBuilder builder = getBuilderForAlgorithm(algorithm);
 
         ClassifierWithProperties[] models = builder.buildClassifiers();
+        if (commandLine.hasOption(BEST_CONFIGURATION_ONLY_OPT)) {
+            models = new ClassifierWithProperties[]{ builder.bestConfiguration() };
+        }
         evaluateClassifiers(models, trainingData, testingData, vectorizeStrings);
     }
 
@@ -47,6 +52,11 @@ public class Evaluation extends AbstractEvaluation {
                 .hasArg()
                 .argName("algorithm")
                 .optionalArg(false)
+                .build();
+
+        Option bestConfigOnly = Option.builder("b")
+                .longOpt(BEST_CONFIGURATION_ONLY_OPT)
+                .desc("Use only best algorithm configuration for the same algorithm, do not evaluate multiple algorithm configurations")
                 .build();
 
         Option trainingSet = Option.builder("t")
@@ -76,6 +86,7 @@ public class Evaluation extends AbstractEvaluation {
                 .build();
 
         options.addOption(algorithm);
+        options.addOption(bestConfigOnly);
         options.addOption(trainingSet);
         options.addOption(testingSet);
         options.addOption(help);
