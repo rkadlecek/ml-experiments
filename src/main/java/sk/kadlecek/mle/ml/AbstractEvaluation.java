@@ -1,9 +1,13 @@
 package sk.kadlecek.mle.ml;
 
+import org.apache.commons.cli.CommandLine;
 import sk.kadlecek.mle.ml.bean.AlgorithmStats;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.builder.ClassifierConfigurationBuilder;
 import sk.kadlecek.mle.ml.runnable.CrossValidationEvaluateClassifierCallable;
 import sk.kadlecek.mle.ml.runnable.EvaluateClassifierCallable;
+import sk.kadlecek.mle.ml.utils.ClassifierUtils;
+import sk.kadlecek.mle.ml.utils.CommandLineUtils;
 import weka.classifiers.Classifier;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.core.Instances;
@@ -19,6 +23,17 @@ public class AbstractEvaluation {
         System.out.print("Required 2 parameters: \n");
         System.out.print("Param1: trainingSet_file_path \n");
         System.out.print("Param2: testingSet_file_path \n");
+    }
+
+    protected static ClassifierWithProperties[] buildClassifiers(CommandLine commandLine) {
+        String algorithm = CommandLineUtils.getSelectedAlgorithm(commandLine);
+        ClassifierConfigurationBuilder builder = ClassifierUtils.getBuilderForAlgorithm(algorithm);
+
+        if (CommandLineUtils.hasUseOnlyBestConfigurationOption(commandLine)) {
+            return new ClassifierWithProperties[]{ builder.bestConfiguration() };
+        } else {
+            return builder.buildClassifiers();
+        }
     }
 
     protected static void crossValidationEvaluateClassifiers(
