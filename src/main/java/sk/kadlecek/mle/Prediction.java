@@ -1,8 +1,9 @@
-package sk.kadlecek.mle.ml;
+package sk.kadlecek.mle;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+import sk.kadlecek.mle.ml.AbstractEvaluation;
 import sk.kadlecek.mle.ml.bean.ClassifierPredictionResult;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.utils.CommandLineUtils;
@@ -21,7 +22,7 @@ public class Prediction extends AbstractEvaluation {
         Options options = defineCommandlineOptions();
         CommandLine commandLine = CommandLineUtils.parseCommandLineArgs(options, args);
 
-        CommandLineUtils.printHelpAndDieIfRequired("Evaluation", commandLine, options);
+        CommandLineUtils.printHelpAndDieIfRequired("Prediction", commandLine, options);
 
         Instances trainingData = readDataFile(CommandLineUtils.getTrainingDataset(commandLine));
         Instances testingData = readDataFile(CommandLineUtils.getTestingDataset(commandLine));

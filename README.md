@@ -142,6 +142,44 @@ Note: Evaluation of configurations of some algorithms, especially *RandomForest*
 
 Results of this evaluation are printed to stdout in the same form as described in previous section.
 
+### Predicting Classes
+
+This application will, instead of evaluations, generate the class label predictions for the given testing dataset.
+Before the actual classification, the used classifier(-s) are trained using given training dataset.
+
+Usage:
+```
+usage: Prediction
+ -a,--algorithm <algorithm>                   algorithm to evaluate (J48,
+                                              DecisionStump,
+                                              DecisionTable, PART,
+                                              RandomForest, NaiveBayes,
+                                              SMO, MultilayerPerceptron)
+ -b,--best-config-only                        Use only best algorithm
+                                              configuration for the same
+                                              algorithm, do not evaluate
+                                              multiple algorithm
+                                              configurations
+ -h,--help                                    print help
+ -o,--output-path <output-path>               Absolute Path (directory) on
+                                              the filesystem, where the
+                                              result file(s) will be
+                                              stored.)
+ -s,--testing-set <testing-set-file-path>     path to testing set file
+ -t,--training-set <training-set-file-path>   path to training set file
+```
+
+Example:
+
+```
+java -cp target/ml-experiments.jar sk.kadlecek.mle.Prediction -a J48 -t resources/experiment9/input/arff/gb_db_training_dataset.arff  -s resources/experiment9/input/arff/me_testing_dataset.arff -o resources/experiment9/output/ 
+```
+
+#### Output
+The results are stored as separate files inside the given output path. Each file name is in form `algorithm_N.arff`, where `algorithm`
+determines the used algorithm, and `N` determines the configuration of the algorithm. Also, a mapping file called `algorithm_mapping.txt`
+is generated inside the output folder. This file contains the mapping before the `N-indices` and the corresponding algorithm properties. 
+ 
 ## Resources
 
 [1] Weka framework: http://www.cs.waikato.ac.nz/~ml/weka/
