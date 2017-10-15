@@ -67,7 +67,6 @@ public class TextFeatureDetector implements FeatureDetector {
         }
         features.setPrefixedNumber(isPrefixedNumber(inputValueTrimmed));
         features.setPostfixedNumber(isPostfixedNumber(inputValueTrimmed));
-
         return features;
     }
 

@@ -37,16 +37,16 @@ public class CommandLineUtils {
         return options;
     }
 
+    public static Options defineCommonAndTrainingDatasetOptions() {
+        Options options = defineCommonCommandlineOptions();
+        options.addOption(defineTrainingSetOption());
+        return options;
+    }
+
     public static Options defineCommonAndTrainingTestingDatasetOptions() {
         Options options = defineCommonCommandlineOptions();
 
-        Option trainingSet = Option.builder("t")
-                .longOpt(TRAINING_SET_OPT)
-                .desc("path to training set file")
-                .hasArg()
-                .argName("training-set-file-path")
-                .optionalArg(false)
-                .build();
+        Option trainingSet = defineTrainingSetOption();
 
         Option testingSet = Option.builder("s")
                 .longOpt(TESTING_SET_OPT)
@@ -59,6 +59,16 @@ public class CommandLineUtils {
         options.addOption(trainingSet);
         options.addOption(testingSet);
         return options;
+    }
+
+    public static Option defineTrainingSetOption() {
+        return Option.builder("t")
+                .longOpt(TRAINING_SET_OPT)
+                .desc("path to training set file")
+                .hasArg()
+                .argName("training-set-file-path")
+                .optionalArg(false)
+                .build();
     }
 
     private static boolean hasPrintHelpOption(CommandLine commandLine) {

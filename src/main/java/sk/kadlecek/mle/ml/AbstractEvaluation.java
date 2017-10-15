@@ -38,6 +38,12 @@ public class AbstractEvaluation {
         }
     }
 
+    protected static ClassifierWithProperties buildBestClassifier(CommandLine commandLine) {
+        String algorithm = CommandLineUtils.getSelectedAlgorithm(commandLine);
+        ClassifierConfigurationBuilder builder = ClassifierUtils.getBuilderForAlgorithm(algorithm);
+        return builder.bestConfiguration();
+    }
+
     protected static Map<Integer, AlgorithmStats> crossValidationEvaluateClassifiers(
             ClassifierWithProperties[] models, Instances dataset, int folds, int runs)
         throws Exception {

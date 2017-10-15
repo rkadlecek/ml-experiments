@@ -22,7 +22,7 @@ public class Prediction extends AbstractEvaluation {
         Options options = defineCommandlineOptions();
         CommandLine commandLine = CommandLineUtils.parseCommandLineArgs(options, args);
 
-        CommandLineUtils.printHelpAndDieIfRequired("Prediction", commandLine, options);
+        CommandLineUtils.printHelpAndDieIfRequired("Evaluation", commandLine, options);
 
         Instances trainingData = readDataFile(CommandLineUtils.getTrainingDataset(commandLine));
         Instances testingData = readDataFile(CommandLineUtils.getTestingDataset(commandLine));
