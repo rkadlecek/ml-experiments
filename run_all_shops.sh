@@ -11,7 +11,7 @@ TESTING_FILE="${INPUT_FOLDER}/${2}.arff"
 JAR_PATH="target/ml-experiments.jar"
 JAVA_CLASS="sk.kadlecek.mle.Evaluation"
 
-PARAMS="-t ${TRAINING_FILE} -s ${TESTING_FILE}"
+PARAMS="-b -t ${TRAINING_FILE} -s ${TESTING_FILE}"
 
 
 #ALGORITHMS=( "J48" "DecisionStump" "PART" "DecisionTable" "RandomForest" "NaiveBayes" "SMO" "MultilayerPerceptron" )

@@ -1,5 +1,12 @@
 package sk.kadlecek.mle.preprocessing.featuredetection;
 
+import weka.core.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class InputValueWithFeatures {
 
     private String value;
@@ -17,7 +24,6 @@ public class InputValueWithFeatures {
     private boolean isPostfixedNumber = false;
 
     private String clazz;
-
 
     public String getValue() {
         return value;

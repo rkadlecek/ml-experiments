@@ -1,5 +1,6 @@
 package sk.kadlecek.mle.ml;
 
+import org.apache.commons.cli.*;
 import sk.kadlecek.mle.ml.bean.AlgorithmRunResult;
 import sk.kadlecek.mle.ml.bean.AlgorithmStats;
 import weka.classifiers.Classifier;
@@ -8,9 +9,7 @@ import weka.classifiers.evaluation.NominalPrediction;
 import weka.classifiers.evaluation.Prediction;
 import weka.core.Instances;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +94,14 @@ public class Common {
         return dataInstances;
     }
 
+    public static void writeDataFile(String filename, Instances datafile) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        writer.write(datafile.toString());
+        writer.newLine();
+        writer.flush();
+        writer.close();
+    }
+
     public static Evaluation classify(Classifier model,
                                       Instances trainingSet, Instances testingSet) throws Exception {
         Evaluation evaluation = new Evaluation(trainingSet);
@@ -146,4 +153,6 @@ public class Common {
         arr[1] = true;
         return arr;
     }
+
+
 }
