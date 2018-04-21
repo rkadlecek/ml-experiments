@@ -42,7 +42,7 @@ public class CrossValidationEvaluateClassifierCallable implements Callable<Algor
             Long startTime = System.currentTimeMillis();
             // randomize the data, stratify test/training set and run #folds crossvalidation
 
-            validation.crossValidateModel(modelWithProperties.getClassifier(), dataset, folds, new Random(1));
+            validation.crossValidateModel(modelWithProperties.getClassifier(), dataset, folds, new Random(i));
             Long endTime = System.currentTimeMillis();
 
             AlgorithmRunResult algorithmRunResult =
