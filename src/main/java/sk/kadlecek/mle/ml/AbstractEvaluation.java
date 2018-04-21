@@ -33,9 +33,11 @@ public class AbstractEvaluation {
 
         if (CommandLineUtils.hasUseOnlyBestConfigurationOption(commandLine)) {
             return new ClassifierWithProperties[]{ builder.bestConfiguration() };
-        } else {
-            return builder.buildClassifiers();
         }
+        if (CommandLineUtils.hasUseOnlyDefaultConfigurationOption(commandLine)) {
+            return new ClassifierWithProperties[]{ builder.defaultConfiguration() };
+        }
+        return builder.buildClassifiers();
     }
 
     protected static ClassifierWithProperties buildBestClassifier(CommandLine commandLine) {

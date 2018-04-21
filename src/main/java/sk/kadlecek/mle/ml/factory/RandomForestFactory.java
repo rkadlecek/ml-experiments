@@ -74,6 +74,10 @@ public class RandomForestFactory extends AbstractAlgorithmFactory {
 
     }
 
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new RandomForest(), new HashMap<>());
+    }
 
     public void setBatchSizeValues(Integer[] batchSizeValues) {
         this.batchSizeValues = batchSizeValues;

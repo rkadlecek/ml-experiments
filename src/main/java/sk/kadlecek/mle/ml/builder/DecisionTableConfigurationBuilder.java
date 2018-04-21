@@ -1,6 +1,7 @@
 package sk.kadlecek.mle.ml.builder;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.factory.AbstractAlgorithmFactory;
 import sk.kadlecek.mle.ml.factory.DecisionTableFactory;
 import weka.attributeSelection.ASSearch;
 import weka.attributeSelection.BestFirst;
@@ -9,12 +10,12 @@ import weka.core.SelectedTag;
 
 import static sk.kadlecek.mle.ml.Common.generateBooleanRange;
 
-public class DecisionTableConfigurationBuilder implements ClassifierConfigurationBuilder {
+public class DecisionTableConfigurationBuilder extends BaseClassifierConfigurationBuilder {
 
     @Override
     public ClassifierWithProperties[] buildClassifiers() {
         // build classifiers
-        DecisionTableFactory factory = new DecisionTableFactory();
+        DecisionTableFactory factory = (DecisionTableFactory) getFactory();
         boolean[] booleanRange = generateBooleanRange();
 
         ASSearch[] searchMethods = {
@@ -35,5 +36,10 @@ public class DecisionTableConfigurationBuilder implements ClassifierConfiguratio
     @Override
     public ClassifierWithProperties bestConfiguration() {
         return null;
+    }
+
+    @Override
+    public AbstractAlgorithmFactory getFactory() {
+        return new DecisionTableFactory();
     }
 }

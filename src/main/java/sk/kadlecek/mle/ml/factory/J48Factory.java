@@ -74,6 +74,11 @@ public class J48Factory extends AbstractAlgorithmFactory {
         return classifiers.toArray(new ClassifierWithProperties[classifiers.size()]);
     }
 
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new J48(), new HashMap<>());
+    }
+
     public void setConfidenceFactorValues(Float[] confidenceFactorValues) {
         this.confidenceFactorValues = confidenceFactorValues;
     }

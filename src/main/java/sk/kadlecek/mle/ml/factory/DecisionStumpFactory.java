@@ -16,4 +16,11 @@ public class DecisionStumpFactory extends AbstractAlgorithmFactory {
         return defaultStump;
     }
 
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        // DecisionStump algorithm contains no configuration options,
+        // return just default one
+        return generateAllClassifiers()[0];
+    }
+
 }

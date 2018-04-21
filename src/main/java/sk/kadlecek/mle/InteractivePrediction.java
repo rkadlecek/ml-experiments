@@ -57,9 +57,18 @@ public class InteractivePrediction extends AbstractEvaluation {
 
             Instance instance = convertInputValueToInstance(vwf).instance(0);
             double label = cwp.getClassifier().classifyInstance(instance);
+            System.out.println("Label: " + label);
             instance.setClassValue(label);
 
-            System.out.println("Result[" + inputValue.getInputValue() + "]: " + instance.toString() + "\n");
+            System.out.println("Result[" + inputValue.getInputValue() + "]: " + instance.toString() + " " +
+                    instance.classAttribute().value((int) label) + "\n");
+
+            /*double[] scores = cwp.getClassifier().distributionForInstance(instance);
+            System.out.println("Result[" + inputValue.getInputValue() + "]: \n");
+            for (int i = 0; i < scores.length; i++) {
+                double score = scores[i];
+                System.out.println("\t " + i + ": " + score);
+            }*/
         }
     }
 

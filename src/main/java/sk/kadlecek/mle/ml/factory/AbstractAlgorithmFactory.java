@@ -10,6 +10,7 @@ public abstract class AbstractAlgorithmFactory {
 
 
     public abstract ClassifierWithProperties[] generateAllClassifiers();
+    public abstract ClassifierWithProperties generateDefaultClassifier();
 
     /**
      * Generates the cartesian product of all positions accross arrays, e.g.

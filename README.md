@@ -116,11 +116,15 @@ usage: CrossfoldEvaluation
                                           DecisionStump, DecisionTable,
                                           PART, RandomForest, NaiveBayes,
                                           SMO, MultilayerPerceptron)
--b,--best-config-only                     Use only best algorithm
+ -b,--best-config-only                    Use only best algorithm
                                           configuration for the same algorithm, do not
                                           evaluate multiple algorithm
-                                          configurations                                         
+                                          configurations                                                                                   
  -d,--data-set <dataset-file-path>        path to data set file
+ -e,--default-config-only                 Use only default algorithm
+                                          configuration for the same algorithm, do not
+                                          evaluate multiple algorithm
+                                          configurations
  -f,--number-of-folds <number_of_folds>   Set number of folds for the
                                           crossfold evaluation. Defaults to 10.
  -h,--help                                print help

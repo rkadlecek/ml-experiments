@@ -2,13 +2,8 @@ package sk.kadlecek.mle.ml.factory;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import weka.classifiers.functions.MultilayerPerceptron;
-import weka.classifiers.functions.SMO;
-import weka.classifiers.functions.supportVector.Kernel;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MultilayerPerceptronFactory extends AbstractAlgorithmFactory {
 
@@ -108,6 +103,11 @@ public class MultilayerPerceptronFactory extends AbstractAlgorithmFactory {
         }
 
         return classifiers.toArray(new ClassifierWithProperties[classifiers.size()]);
+    }
+
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new MultilayerPerceptron(), new HashMap<>());
     }
 
     public void setHiddenLayersValues(String[] hiddenLayersValues) {

@@ -6,5 +6,7 @@ public interface ClassifierConfigurationBuilder {
 
     ClassifierWithProperties[] buildClassifiers();
 
+    ClassifierWithProperties defaultConfiguration();
+
     ClassifierWithProperties bestConfiguration();
 }

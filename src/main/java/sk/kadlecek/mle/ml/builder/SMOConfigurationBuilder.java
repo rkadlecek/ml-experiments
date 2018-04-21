@@ -1,6 +1,7 @@
 package sk.kadlecek.mle.ml.builder;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.factory.AbstractAlgorithmFactory;
 import sk.kadlecek.mle.ml.factory.SMOFactory;
 import weka.classifiers.functions.supportVector.Kernel;
 import weka.classifiers.functions.supportVector.PolyKernel;
@@ -10,12 +11,12 @@ import weka.classifiers.functions.supportVector.RBFKernel;
 import static sk.kadlecek.mle.ml.Common.generateBooleanRange;
 import static sk.kadlecek.mle.ml.Common.generateDoubleRange;
 
-public class SMOConfigurationBuilder implements ClassifierConfigurationBuilder {
+public class SMOConfigurationBuilder extends BaseClassifierConfigurationBuilder {
 
     @Override
     public ClassifierWithProperties[] buildClassifiers() {
         // build classifiers
-        SMOFactory factory = new SMOFactory();
+        SMOFactory factory = (SMOFactory) getFactory();
         boolean[] booleanRange = generateBooleanRange();
 
         Kernel[] kernels = {
@@ -35,7 +36,7 @@ public class SMOConfigurationBuilder implements ClassifierConfigurationBuilder {
     @Override
     public ClassifierWithProperties bestConfiguration() {
 
-        SMOFactory factory = new SMOFactory();
+        SMOFactory factory = (SMOFactory) getFactory();
 
         Double[] complexityConstantValues = { 1.4d };
         Kernel[] kernelValues = { new Puk() };
@@ -46,5 +47,10 @@ public class SMOConfigurationBuilder implements ClassifierConfigurationBuilder {
         factory.setBuildCalibrationModelValues(buildCalibrationModelValues);
 
         return factory.generateAllClassifiers()[0];
+    }
+
+    @Override
+    public AbstractAlgorithmFactory getFactory() {
+        return new SMOFactory();
     }
 }

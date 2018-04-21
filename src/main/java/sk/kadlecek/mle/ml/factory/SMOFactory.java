@@ -5,10 +5,7 @@ import weka.classifiers.functions.SMO;
 import weka.classifiers.functions.supportVector.Kernel;
 import weka.classifiers.trees.RandomForest;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SMOFactory extends AbstractAlgorithmFactory {
 
@@ -55,6 +52,11 @@ public class SMOFactory extends AbstractAlgorithmFactory {
         }
 
         return classifiers.toArray(new ClassifierWithProperties[classifiers.size()]);
+    }
+
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new SMO(), new HashMap<>());
     }
 
     public void setComplexityConstantValues(Double[] complexityConstantValues) {

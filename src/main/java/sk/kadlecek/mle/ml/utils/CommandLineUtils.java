@@ -6,6 +6,7 @@ public class CommandLineUtils {
 
     private static final String ALGORITHM_OPT = "algorithm";
     private static final String BEST_CONFIGURATION_ONLY_OPT = "best-config-only";
+    private static final String DEFAULT_CONFIGURATION_ONLY_OPT = "default-config-only";
     private static final String HELP_OPT = "help";
     private static final String TRAINING_SET_OPT = "training-set";
     private static final String TESTING_SET_OPT = "testing-set";
@@ -31,9 +32,10 @@ public class CommandLineUtils {
         return options;
     }
 
-    public static Options defineCommonAndBestConfigurationOnlyOptions() {
+    public static Options defineCommonAndDefaultAndBestConfigurationOnlyOptions() {
         Options options = defineCommonCommandlineOptions();
         options.addOption(defineBestConfigurationOnlyOption());
+        options.addOption(defineDefaultConfigurationOnlyOption());
         return options;
     }
 
@@ -80,6 +82,13 @@ public class CommandLineUtils {
                 .build();
     }
 
+    public static Option defineDefaultConfigurationOnlyOption() {
+        return Option.builder("e")
+                .longOpt(DEFAULT_CONFIGURATION_ONLY_OPT)
+                .desc("Use only default algorithm configuration for the same algorithm, do not evaluate multiple algorithm configurations")
+                .build();
+    }
+
     private static boolean hasPrintHelpOption(CommandLine commandLine) {
         return commandLine.hasOption(HELP_OPT);
     }
@@ -93,6 +102,10 @@ public class CommandLineUtils {
 
     public static boolean hasUseOnlyBestConfigurationOption(CommandLine commandLine) {
         return commandLine.hasOption(BEST_CONFIGURATION_ONLY_OPT);
+    }
+
+    public static boolean hasUseOnlyDefaultConfigurationOption(CommandLine commandLine) {
+        return commandLine.hasOption(DEFAULT_CONFIGURATION_ONLY_OPT);
     }
 
     public static String getSelectedAlgorithm(CommandLine commandLine) {

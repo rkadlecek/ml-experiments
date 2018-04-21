@@ -2,10 +2,8 @@ package sk.kadlecek.mle.ml.factory;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import weka.classifiers.bayes.NaiveBayes;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+
+import java.util.*;
 
 public class NaiveBayesFactory extends AbstractAlgorithmFactory {
 
@@ -42,6 +40,11 @@ public class NaiveBayesFactory extends AbstractAlgorithmFactory {
         }
 
         return classifiers.toArray(new ClassifierWithProperties[classifiers.size()]);
+    }
+
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new NaiveBayes(), new HashMap<>());
     }
 
     public void setUseKernelEstimatorValues(boolean[] useKernelEstimatorValues) {

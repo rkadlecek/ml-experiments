@@ -3,10 +3,7 @@ package sk.kadlecek.mle.ml.factory;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import weka.classifiers.rules.PART;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PARTFactory extends AbstractAlgorithmFactory {
 
@@ -83,6 +80,11 @@ public class PARTFactory extends AbstractAlgorithmFactory {
         }
 
         return classifiers.toArray(new ClassifierWithProperties[classifiers.size()]);
+    }
+
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new PART(), new HashMap<>());
     }
 
     public void setConfidenceFactorValues(Float[] confidenceFactorValues) {

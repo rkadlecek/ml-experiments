@@ -6,10 +6,7 @@ import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.rules.DecisionTable;
 import weka.core.SelectedTag;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class DecisionTableFactory extends AbstractAlgorithmFactory {
 
@@ -46,6 +43,11 @@ public class DecisionTableFactory extends AbstractAlgorithmFactory {
         }
 
         return classifiers.toArray(new ClassifierWithProperties[classifiers.size()]);
+    }
+
+    @Override
+    public ClassifierWithProperties generateDefaultClassifier() {
+        return new ClassifierWithProperties(new DecisionTable(), new HashMap<>());
     }
 
     public void setSearchValues(ASSearch[] searchValues) {

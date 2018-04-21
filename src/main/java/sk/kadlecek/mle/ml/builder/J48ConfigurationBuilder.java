@@ -1,15 +1,16 @@
 package sk.kadlecek.mle.ml.builder;
 
+import sk.kadlecek.mle.ml.factory.AbstractAlgorithmFactory;
 import sk.kadlecek.mle.ml.factory.J48Factory;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 
 import static sk.kadlecek.mle.ml.Common.*;
 
-public class J48ConfigurationBuilder implements ClassifierConfigurationBuilder {
+public class J48ConfigurationBuilder extends BaseClassifierConfigurationBuilder {
 
     @Override
     public ClassifierWithProperties[] buildClassifiers() {
-        J48Factory factory = new J48Factory();
+        J48Factory factory = (J48Factory) getFactory();
         boolean[] booleanRange = generateBooleanRange();
 
         //factory.setConfidenceFactorValues(generateFloatRange(0.1f, 0.4f, 0.1f));
@@ -25,7 +26,7 @@ public class J48ConfigurationBuilder implements ClassifierConfigurationBuilder {
     @Override
     public ClassifierWithProperties bestConfiguration() {
 
-        J48Factory factory = new J48Factory();
+        J48Factory factory = (J48Factory) getFactory();
 
         Integer[] minNumObjPerLeafValues = { 1 };
         boolean[] unprunedValues = { true };
@@ -38,4 +39,8 @@ public class J48ConfigurationBuilder implements ClassifierConfigurationBuilder {
         return factory.generateAllClassifiers()[0];
     }
 
+    @Override
+    public AbstractAlgorithmFactory getFactory() {
+        return new J48Factory();
+    }
 }

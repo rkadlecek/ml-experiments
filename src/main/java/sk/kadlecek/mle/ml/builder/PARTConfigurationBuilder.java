@@ -1,16 +1,17 @@
 package sk.kadlecek.mle.ml.builder;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.factory.AbstractAlgorithmFactory;
 import sk.kadlecek.mle.ml.factory.PARTFactory;
 
 import static sk.kadlecek.mle.ml.Common.*;
 
-public class PARTConfigurationBuilder implements ClassifierConfigurationBuilder {
+public class PARTConfigurationBuilder extends BaseClassifierConfigurationBuilder {
 
     @Override
     public ClassifierWithProperties[] buildClassifiers() {
         // build classifiers
-        PARTFactory factory = new PARTFactory();
+        PARTFactory factory = (PARTFactory) getFactory();
         boolean[] booleanRange = generateBooleanRange();
 
         factory.setConfidenceFactorValues(generateFloatRange(0.1f, 0.4f, 0.1f));
@@ -30,7 +31,7 @@ public class PARTConfigurationBuilder implements ClassifierConfigurationBuilder 
     @Override
     public ClassifierWithProperties bestConfiguration() {
 
-        PARTFactory factory = new PARTFactory();
+        PARTFactory factory = (PARTFactory) getFactory();
 
         Float[] confidenceFactorValues = { 0.1f };
         Integer[] minNumObjPerLeafValues = { 1 };
@@ -46,5 +47,10 @@ public class PARTConfigurationBuilder implements ClassifierConfigurationBuilder 
         factory.setUseMDLcorrectionValues(mldCorrectionValues);
 
         return factory.generateAllClassifiers()[0];
+    }
+
+    @Override
+    public AbstractAlgorithmFactory getFactory() {
+        return new PARTFactory();
     }
 }

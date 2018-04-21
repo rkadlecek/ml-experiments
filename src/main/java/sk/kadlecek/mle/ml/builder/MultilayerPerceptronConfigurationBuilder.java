@@ -1,16 +1,17 @@
 package sk.kadlecek.mle.ml.builder;
 
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
+import sk.kadlecek.mle.ml.factory.AbstractAlgorithmFactory;
 import sk.kadlecek.mle.ml.factory.MultilayerPerceptronFactory;
 
 import static sk.kadlecek.mle.ml.Common.*;
 
-public class MultilayerPerceptronConfigurationBuilder implements ClassifierConfigurationBuilder {
+public class MultilayerPerceptronConfigurationBuilder extends BaseClassifierConfigurationBuilder {
 
     @Override
     public ClassifierWithProperties[] buildClassifiers() {
         // build classifiers
-        MultilayerPerceptronFactory factory = new MultilayerPerceptronFactory();
+        MultilayerPerceptronFactory factory = (MultilayerPerceptronFactory) getFactory();
         boolean[] booleanRange = generateBooleanRange();
 
         String[] hiddenLayersValues = {"a", "t", "i", "o", "a,t"};
@@ -35,7 +36,7 @@ public class MultilayerPerceptronConfigurationBuilder implements ClassifierConfi
     public ClassifierWithProperties bestConfiguration() {
 
         // build classifiers
-        MultilayerPerceptronFactory factory = new MultilayerPerceptronFactory();
+        MultilayerPerceptronFactory factory = (MultilayerPerceptronFactory) getFactory();
 
         String[] hiddenLayersValues = { "a,t" };
         Double[] learningRateValues = { 0.3 };
@@ -56,4 +57,10 @@ public class MultilayerPerceptronConfigurationBuilder implements ClassifierConfi
 
         return factory.generateAllClassifiers()[0];
     }
+
+    @Override
+    public AbstractAlgorithmFactory getFactory() {
+        return new MultilayerPerceptronFactory();
+    }
+
 }
