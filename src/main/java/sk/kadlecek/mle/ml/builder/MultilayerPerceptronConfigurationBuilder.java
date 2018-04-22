@@ -21,12 +21,12 @@ public class MultilayerPerceptronConfigurationBuilder extends BaseClassifierConf
 
         factory.setTrainingTimeEpochValues(generateIntegerRange(300, 700, 100));
 
-        //factory.setAutoBuildValues(booleanRange);
+        factory.setAutoBuildValues(booleanRange); //
         factory.setDecayValues(booleanRange);
-        //factory.setNominalToBinaryFilterValues(booleanRange);
+        factory.setNominalToBinaryFilterValues(booleanRange); //
         factory.setNormalizeAttributesValues(booleanRange);
-        //factory.setNormalizeNumericClassValues(booleanRange);
-        //factory.setResetValues(booleanRange);
+        factory.setNormalizeNumericClassValues(booleanRange); //
+        factory.setResetValues(booleanRange); //
 
         // evaluate
         return factory.generateAllClassifiers();

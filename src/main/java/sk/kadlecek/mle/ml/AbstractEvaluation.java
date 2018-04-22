@@ -55,6 +55,8 @@ public class AbstractEvaluation {
         // Run for each model
         Set<Future<AlgorithmStats>> futures = new HashSet<>();
 
+        System.err.println("Tasks:" + (models.length * runs));
+
         for (int j = 0; j < models.length; j++) {
 
             // submit threads
@@ -115,7 +117,7 @@ public class AbstractEvaluation {
     }
 
     private static ExecutorService initThreadPool() {
-        return new ThreadPoolExecutor(4, 4, 60, TimeUnit.SECONDS,
+        return new ThreadPoolExecutor(8, 8, 60, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>());
     }
 

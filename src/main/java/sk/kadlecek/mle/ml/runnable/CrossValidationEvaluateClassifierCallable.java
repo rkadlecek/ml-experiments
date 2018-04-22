@@ -48,6 +48,8 @@ public class CrossValidationEvaluateClassifierCallable implements Callable<Algor
             AlgorithmRunResult algorithmRunResult =
                     new AlgorithmRunResult(modelWithProperties.getClassifierSimpleName(), validation, endTime - startTime);
 
+            System.err.println("Done [" + i + "/" + runs + "]: " + modelWithProperties.getProperties() + " in " + (endTime - startTime) + "ms");
+
             algorithmRuns.add(algorithmRunResult);
 
         }

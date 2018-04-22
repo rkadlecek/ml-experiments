@@ -17,11 +17,12 @@ public class PARTConfigurationBuilder extends BaseClassifierConfigurationBuilder
         factory.setConfidenceFactorValues(generateFloatRange(0.1f, 0.4f, 0.1f));
         factory.setMinNumObjValues(generateIntegerRange(0,10, 1));
 
-        factory.setUnprunedValues(booleanRange);
-        //factory.setBinarySplitsValues(booleanRange);
-        //factory.setDoNotMakeSplitPointActualValueValues(booleanRange);
-        factory.setReducedErrorPruningValues(booleanRange);
+        factory.setBinarySplitsValues(booleanRange);
+        factory.setDoNotMakeSplitPointActualValueValues(booleanRange);
+
         factory.setUseMDLcorrectionValues(booleanRange);
+        factory.setUnprunedValues(booleanRange);
+        factory.setReducedErrorPruningValues(booleanRange);
 
 
         // evaluate
