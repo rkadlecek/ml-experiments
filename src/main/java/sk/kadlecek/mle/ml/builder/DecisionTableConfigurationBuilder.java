@@ -3,10 +3,9 @@ package sk.kadlecek.mle.ml.builder;
 import sk.kadlecek.mle.ml.bean.ClassifierWithProperties;
 import sk.kadlecek.mle.ml.factory.AbstractAlgorithmFactory;
 import sk.kadlecek.mle.ml.factory.DecisionTableFactory;
-import weka.attributeSelection.ASSearch;
-import weka.attributeSelection.BestFirst;
-import weka.attributeSelection.GreedyStepwise;
+import weka.attributeSelection.*;
 import weka.core.SelectedTag;
+import weka.core.Tag;
 
 import static sk.kadlecek.mle.ml.Common.generateBooleanRange;
 
@@ -18,12 +17,24 @@ public class DecisionTableConfigurationBuilder extends BaseClassifierConfigurati
         DecisionTableFactory factory = (DecisionTableFactory) getFactory();
         boolean[] booleanRange = generateBooleanRange();
 
+        ASSearch bestFirstBackward = new BestFirst();
+        ((BestFirst) bestFirstBackward).setDirection(new SelectedTag(0, BestFirst.TAGS_SELECTION));
+
+        ASSearch bestFirstForward = new BestFirst();
+        ((BestFirst) bestFirstForward).setDirection(new SelectedTag(1, BestFirst.TAGS_SELECTION));
+
+        ASSearch bestFirstBidirectional = new BestFirst();
+        ((BestFirst) bestFirstBidirectional).setDirection(new SelectedTag(2, BestFirst.TAGS_SELECTION));
+
+        ASSearch greedyStepWiseForward = new GreedyStepwise();
+        ((GreedyStepwise) greedyStepWiseForward).setSearchBackwards(false);
+
+        ASSearch greedyStepWiseBackward = new GreedyStepwise();
+        ((GreedyStepwise) greedyStepWiseBackward).setSearchBackwards(true);
+
         ASSearch[] searchMethods = {
-                new BestFirst() {{ setDirection(new SelectedTag(SELECTION_FORWARD, TAGS_SELECTION)); }},
-                new BestFirst() {{ setDirection(new SelectedTag(SELECTION_BACKWARD, TAGS_SELECTION)); }},
-                new BestFirst() {{ setDirection(new SelectedTag(SELECTION_BIDIRECTIONAL, TAGS_SELECTION)); }},
-                //new GreedyStepwise(),
-                new GreedyStepwise() {{ setSearchBackwards(true);}}
+                bestFirstBackward, bestFirstForward, bestFirstBidirectional,
+                greedyStepWiseBackward, greedyStepWiseForward
         };
 
         factory.setSearchValues(searchMethods);
@@ -35,7 +46,18 @@ public class DecisionTableConfigurationBuilder extends BaseClassifierConfigurati
 
     @Override
     public ClassifierWithProperties bestConfiguration() {
-        return null;
+        DecisionTableFactory factory = (DecisionTableFactory) getFactory();
+
+        ASSearch greedyStepWiseBackward = new GreedyStepwise();
+        ((GreedyStepwise) greedyStepWiseBackward).setSearchBackwards(true);
+
+        ASSearch[] useSearches = { greedyStepWiseBackward };
+        boolean[] useIbkValues = { true };
+
+        factory.setSearchValues(useSearches);
+        factory.setUseIBkValues(useIbkValues);
+
+        return factory.generateAllClassifiers()[0];
     }
 
     @Override

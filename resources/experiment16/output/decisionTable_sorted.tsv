@@ -1,0 +1,11 @@
+Configuration	ErrorRate	Precision	Recall	F-Measure
+{SearchMethod=, Greedy Stepwise (backwards)., Start set: all attributes, Merit of best subset found:    0    , UseIBk=true}, , , 	17.56%	84.51%	82.44%	82.78%
+{SearchMethod=, Best first., Start set: no attributes, Search direction: backward, Stale search after 5 node expansions, Total number of subsets evaluated: 0, Merit of best subset found:    0    , UseIBk=true}	17.65%	84.44%	82.35%	82.68%
+{SearchMethod=, Best first., Start set: no attributes, Search direction: forward, Stale search after 5 node expansions, Total number of subsets evaluated: 0, Merit of best subset found:    0    , UseIBk=true}	17.71%	85.59%	82.29%	83.22%
+{SearchMethod=, Greedy Stepwise (forwards)., Start set: no attributes, Merit of best subset found:    0    , UseIBk=true}, , , 	17.71%	85.59%	82.29%	83.22%
+{SearchMethod=, Best first., Start set: no attributes, Search direction: bi-directional, Stale search after 5 node expansions, Total number of subsets evaluated: 0, Merit of best subset found:    0    , UseIBk=true}	17.71%	85.04%	82.29%	82.95%
+{SearchMethod=, Greedy Stepwise (backwards)., Start set: all attributes, Merit of best subset found:    0    , UseIBk=false}, , , 	18.94%	83.04%	81.06%	80.66%
+{SearchMethod=, Best first., Start set: no attributes, Search direction: backward, Stale search after 5 node expansions, Total number of subsets evaluated: 0, Merit of best subset found:    0    , UseIBk=false}	19.01%	82.97%	80.99%	80.58%
+{SearchMethod=, Best first., Start set: no attributes, Search direction: bi-directional, Stale search after 5 node expansions, Total number of subsets evaluated: 0, Merit of best subset found:    0    , UseIBk=false}	19.33%	83.57%	80.67%	80.49%
+{SearchMethod=, Best first., Start set: no attributes, Search direction: forward, Stale search after 5 node expansions, Total number of subsets evaluated: 0, Merit of best subset found:    0    , UseIBk=false}	19.57%	84.14%	80.43%	80.45%
+{SearchMethod=, Greedy Stepwise (forwards)., Start set: no attributes, Merit of best subset found:    0    , UseIBk=false}, , , 	19.57%	84.14%	80.43%	80.45%
