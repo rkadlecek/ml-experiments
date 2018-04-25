@@ -35,13 +35,18 @@ public class PARTConfigurationBuilder extends BaseClassifierConfigurationBuilder
         PARTFactory factory = (PARTFactory) getFactory();
 
         Float[] confidenceFactorValues = { 0.1f };
-        Integer[] minNumObjPerLeafValues = { 1 };
-        boolean[] unprunedValues = { false };
+        Integer[] minNumObjPerLeafValues = { 0 };
+        boolean[] binarySplitsValues = { false };
+        boolean[] doNotMakeSplitPointActualValueValues = { false };
+        boolean[] unprunedValues = { true };
         boolean[] reducedErrorPruningValues = { false };
         boolean[] mldCorrectionValues = { true };
 
         factory.setConfidenceFactorValues(confidenceFactorValues);
         factory.setMinNumObjValues(minNumObjPerLeafValues);
+
+        factory.setBinarySplitsValues(binarySplitsValues);
+        factory.setDoNotMakeSplitPointActualValueValues(doNotMakeSplitPointActualValueValues);
 
         factory.setUnprunedValues(unprunedValues);
         factory.setReducedErrorPruningValues(reducedErrorPruningValues);

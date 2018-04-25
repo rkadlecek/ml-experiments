@@ -32,11 +32,13 @@ public class RandomForestConfigurationBuilder extends BaseClassifierConfiguratio
 
         RandomForestFactory factory = (RandomForestFactory) getFactory();
 
+        Integer[] batchSizeValues = { 80 };
         Integer[] maxDepthValues = { 15 };
         Integer[] numFeaturesValues = { 3 };
-        Integer[] numBaggingIterationsValues = { 120 };
+        Integer[] numBaggingIterationsValues = { 90 };
         boolean[] breakTiesRandomlyValues = { true };
 
+        factory.setBatchSizeValues(batchSizeValues);
         factory.setMaxDepthValues(maxDepthValues);
         factory.setNumFeaturesValues(numFeaturesValues);
         factory.setNumBaggingIterationsValues(numBaggingIterationsValues);

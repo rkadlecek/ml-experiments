@@ -27,8 +27,10 @@ public class NaiveBayesConfigurationBuilder extends BaseClassifierConfigurationB
 
         NaiveBayesFactory factory = (NaiveBayesFactory) getFactory();
 
+        boolean[] useKernelEstimatorValues = { false };
         boolean[] useSupervisedDiscretizationValues = { true };
 
+        factory.setUseKernelEstimatorValues(useKernelEstimatorValues);
         factory.setUseSupervisedDiscretizationValues(useSupervisedDiscretizationValues);
 
         return factory.generateAllClassifiers()[0];

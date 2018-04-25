@@ -29,10 +29,16 @@ public class J48ConfigurationBuilder extends BaseClassifierConfigurationBuilder 
         J48Factory factory = (J48Factory) getFactory();
 
         Integer[] minNumObjPerLeafValues = { 1 };
-        boolean[] unprunedValues = { true };
-        boolean[] mldCorrectionValues = { false };
+        Float[] confidenceFactorValues = { 0.4f };
+        boolean[] subtreeRaisingValues = { true };
+        boolean[] useLaplaceValues = { false };
+        boolean[] unprunedValues = { false };
+        boolean[] mldCorrectionValues = { true };
 
         factory.setMinNumObjPerLeafValues(minNumObjPerLeafValues);
+        factory.setConfidenceFactorValues(confidenceFactorValues);
+        factory.setSubtreeRaisingValues(subtreeRaisingValues);
+        factory.setUseLaplaceValues(useLaplaceValues);
         factory.setUseMDLCorrectionValues(mldCorrectionValues);
         factory.setUnprunedValues(unprunedValues);
 
