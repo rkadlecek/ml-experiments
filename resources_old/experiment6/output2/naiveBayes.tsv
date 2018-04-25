@@ -1,0 +1,4 @@
+{UseKernelEstimatorValues=false, UseSupervisedDiscretization=false}	34.12%	68.25%	65.88%	65.90%	587.50ms
+{UseKernelEstimatorValues=false, UseSupervisedDiscretization=true}	23.81%	77.08%	76.19%	75.94%	363.80ms
+{UseKernelEstimatorValues=true, UseSupervisedDiscretization=false}	29.02%	74.38%	70.98%	70.69%	1097.40ms
+{UseKernelEstimatorValues=true, UseSupervisedDiscretization=true}	23.81%	77.08%	76.19%	75.94%	361.80ms

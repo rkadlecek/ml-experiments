@@ -1,0 +1,48 @@
+{ComplexityConstant=0.7, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	40.06%	48.78%	59.94%	51.37%	28018.70ms
+{ComplexityConstant=0.7, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	26.05%	70.22%	73.95%	70.03%	68482.30ms
+{ComplexityConstant=0.7, Kernel=Puk kernel, BuildCalibrationModel=false}	30.58%	60.14%	69.42%	62.27%	158594.40ms
+{ComplexityConstant=0.7, Kernel=Puk kernel, BuildCalibrationModel=true}	20.83%	78.18%	79.17%	76.67%	229977.80ms
+{ComplexityConstant=0.7, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.23%	51.21%	37.65%	294689.20ms
+{ComplexityConstant=0.7, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.79%	65.54%	69.21%	64.52%	370890.70ms
+{ComplexityConstant=0.7999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	39.51%	49.86%	60.49%	52.22%	28372.00ms
+{ComplexityConstant=0.7999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	25.77%	71.09%	74.23%	70.34%	68610.30ms
+{ComplexityConstant=0.7999999999999999, Kernel=Puk kernel, BuildCalibrationModel=false}	30.55%	60.04%	69.45%	62.33%	154527.30ms
+{ComplexityConstant=0.7999999999999999, Kernel=Puk kernel, BuildCalibrationModel=true}	20.50%	78.48%	79.50%	77.07%	224225.10ms
+{ComplexityConstant=0.7999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.24%	51.21%	37.65%	267642.40ms
+{ComplexityConstant=0.7999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.68%	65.55%	69.32%	64.73%	341365.30ms
+{ComplexityConstant=0.8999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	39.30%	50.34%	60.70%	52.57%	19361.90ms
+{ComplexityConstant=0.8999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	25.67%	71.67%	74.33%	70.49%	59245.90ms
+{ComplexityConstant=0.8999999999999999, Kernel=Puk kernel, BuildCalibrationModel=false}	30.48%	60.17%	69.52%	62.53%	149217.90ms
+{ComplexityConstant=0.8999999999999999, Kernel=Puk kernel, BuildCalibrationModel=true}	20.16%	78.72%	79.84%	77.43%	219456.00ms
+{ComplexityConstant=0.8999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.25%	51.21%	37.66%	246105.50ms
+{ComplexityConstant=0.8999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.61%	65.95%	69.39%	64.94%	320452.30ms
+{ComplexityConstant=0.9999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	39.06%	51.17%	60.94%	52.95%	20186.90ms
+{ComplexityConstant=0.9999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	25.50%	71.85%	74.50%	70.70%	59940.20ms
+{ComplexityConstant=0.9999999999999999, Kernel=Puk kernel, BuildCalibrationModel=false}	30.17%	60.89%	69.83%	63.03%	153247.70ms
+{ComplexityConstant=0.9999999999999999, Kernel=Puk kernel, BuildCalibrationModel=true}	19.97%	78.90%	80.03%	77.66%	220813.30ms
+{ComplexityConstant=0.9999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.27%	51.21%	37.68%	244069.80ms
+{ComplexityConstant=0.9999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.49%	66.00%	69.51%	65.05%	316504.50ms
+{ComplexityConstant=1.0999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	38.91%	51.43%	61.09%	53.14%	20087.90ms
+{ComplexityConstant=1.0999999999999999, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	25.30%	72.12%	74.70%	70.95%	60544.30ms
+{ComplexityConstant=1.0999999999999999, Kernel=Puk kernel, BuildCalibrationModel=false}	29.72%	61.39%	70.28%	63.53%	147730.90ms
+{ComplexityConstant=1.0999999999999999, Kernel=Puk kernel, BuildCalibrationModel=true}	19.83%	78.88%	80.17%	77.82%	216091.40ms
+{ComplexityConstant=1.0999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.28%	51.21%	37.69%	242698.80ms
+{ComplexityConstant=1.0999999999999999, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.57%	66.51%	69.43%	65.05%	316093.50ms
+{ComplexityConstant=1.2, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	38.60%	51.90%	61.40%	53.54%	20503.10ms
+{ComplexityConstant=1.2, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	25.11%	72.51%	74.89%	71.22%	61394.50ms
+{ComplexityConstant=1.2, Kernel=Puk kernel, BuildCalibrationModel=false}	29.24%	61.85%	70.76%	64.00%	148032.30ms
+{ComplexityConstant=1.2, Kernel=Puk kernel, BuildCalibrationModel=true}	19.72%	79.08%	80.28%	77.96%	216089.30ms
+{ComplexityConstant=1.2, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.29%	51.21%	37.70%	245454.60ms
+{ComplexityConstant=1.2, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.49%	66.44%	69.51%	65.25%	316378.80ms
+{ComplexityConstant=1.3, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	38.46%	51.98%	61.54%	53.73%	20997.70ms
+{ComplexityConstant=1.3, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	24.95%	72.66%	75.05%	71.46%	62516.70ms
+{ComplexityConstant=1.3, Kernel=Puk kernel, BuildCalibrationModel=false}	28.73%	62.55%	71.27%	64.47%	147951.30ms
+{ComplexityConstant=1.3, Kernel=Puk kernel, BuildCalibrationModel=true}	19.52%	79.31%	80.48%	78.21%	214571.30ms
+{ComplexityConstant=1.3, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.30%	51.21%	37.71%	235691.60ms
+{ComplexityConstant=1.3, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.41%	66.33%	69.59%	65.32%	271410.40ms
+{ComplexityConstant=1.4000000000000001, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=false}	38.36%	52.15%	61.64%	53.90%	21335.60ms
+{ComplexityConstant=1.4000000000000001, Kernel=Linear Kernel: K(x,y) = <x,y>, BuildCalibrationModel=true}	24.83%	72.69%	75.17%	71.62%	63810.10ms
+{ComplexityConstant=1.4000000000000001, Kernel=Puk kernel, BuildCalibrationModel=false}	28.16%	63.68%	71.84%	65.11%	138893.20ms
+{ComplexityConstant=1.4000000000000001, Kernel=Puk kernel, BuildCalibrationModel=true}	19.42%	79.49%	80.58%	78.37%	174137.10ms
+{ComplexityConstant=1.4000000000000001, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=false}	48.79%	31.30%	51.21%	37.71%	181503.00ms
+{ComplexityConstant=1.4000000000000001, Kernel=RBF kernel: K(x,y) = e^-(0.01* <x-y,x-y>^2), BuildCalibrationModel=true}	30.41%	66.51%	69.59%	65.34%	213450.80ms

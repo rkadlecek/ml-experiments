@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdfsyntax-ns#"
+        xmlns:rkd="http://www.kadlecek.sk/dp/ontology-ns#">
+
+    <rdf:Description rdf:about="http://www.kadlecek.sk/dp/phones/xiaomi-1">
+        <rkd:title lang="en">xiaomi mi5 64gb 4g smartphone</rkd:title>
+        <rkd:brand lang="en">xiaomi</rkd:brand>
+        <rkd:model lang="en"></rkd:model> <!-- scishion -->
+
+        <rkd:bluetooth-version lang="en">bluetooth v4.2</rkd:bluetooth-version>
+        <rkd:usb-version lang="en"></rkd:usb-version> <!-- 2 x v3.0, thunderbolt 2 port -->
+        <rkd:device-type lang="en">4g smartphone</rkd:device-type>
+
+        <rkd:sim-card-slot lang="en">dual sim,dual standby</rkd:sim-card-slot>
+        <rkd:sim-card-type lang="en">dual nano sim</rkd:sim-card-type>
+
+        <rkd:price lang="en">$228.99</rkd:price>
+
+        <rkd:os lang="en">miui 8</rkd:os>
+        <rkd:os-bits lang="en"></rkd:os-bits> <!-- 64bit -->
+
+        <rkd:wireless-connectivity lang="en">3g,4g,a-gps,gps,gsm,wifi</rkd:wireless-connectivity>
+        <rkd:wifi lang="en">802.11a/b/g/n wireless internet</rkd:wifi>
+
+        <rkd:network-type lang="en">fdd-lte+wcdma+gsm</rkd:network-type>
+        <rkd:network-2g lang="en">gsm 850/900/1800/1900mhz</rkd:network-2g>
+        <rkd:network-3g lang="en">wcdma 850/900/1900/2100mhz</rkd:network-3g>
+        <rkd:network-4g lang="en">fdd-lte 1800/2100/2600mhz</rkd:network-4g>
+
+        <rkd:battery-capacity lang="en">3000mah</rkd:battery-capacity>
+        <rkd:battery-type lang="en">lithium-ion polymer battery,non-removable</rkd:battery-type>
+
+        <rkd:ram-capacity lang="en">3gb ram</rkd:ram-capacity>
+        <rkd:ram-type lang="en"></rkd:ram-type> <!-- ddr3-->
+
+        <rkd:gpu lang="en">adreno 530</rkd:gpu>
+
+        <rkd:cpu lang="en">qualcomm snapdragon 820</rkd:cpu>
+        <rkd:cpu-freq lang="en"></rkd:cpu-freq> <!-- 2.15ghz -->
+        <rkd:cpu-cores lang="en">2.15ghz,quad core</rkd:cpu-cores>
+
+        <rkd:external-memory lang="en">not supported</rkd:external-memory>
+        <rkd:storage-ssd lang="en">64gb</rkd:storage-ssd>
+        <rkd:storage-hdd lang="en"></rkd:storage-hdd> <!-- 512 gb -->
+
+        <rkd:camera-front lang="en">4.0mp</rkd:camera-front>
+        <rkd:camera-back lang="en">16.0mp 4-axis ois</rkd:camera-back>
+
+        <rkd:weight lang="en">0.1290 kg</rkd:weight>
+        <rkd:product-size lang="en">14.46 x 6.92 x 0.73 cm / 5.69 x 2.72 x 0.29 inches</rkd:product-size>
+
+        <rkd:screen-size lang="en">5.15 inch</rkd:screen-size>
+        <rkd:screen-ppi lang="en">428</rkd:screen-ppi>
+        <rkd:screen-type lang="en">capacitive</rkd:screen-type>
+        <rkd:screen-resolution lang="en">1920 x 1080 (fhd)</rkd:screen-resolution>
+
+        <rkd:color lang="en"></rkd:color> <!-- black -->
+
+        <rkd:ethernet-speed lang="en"></rkd:ethernet-speed> <!-- 10 / 100m -->
+
+    </rdf:Description>
+</rdf:RDF>

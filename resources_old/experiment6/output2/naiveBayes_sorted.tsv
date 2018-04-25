@@ -1,0 +1,5 @@
+Configuration	ErrorRate	Precision	Recall	F-Measure
+{UseKernelEstimatorValues=false, UseSupervisedDiscretization=true}	23.81%	77.08%	76.19%	75.94%
+{UseKernelEstimatorValues=true, UseSupervisedDiscretization=true}	23.81%	77.08%	76.19%	75.94%
+{UseKernelEstimatorValues=true, UseSupervisedDiscretization=false}	29.02%	74.38%	70.98%	70.69%
+{UseKernelEstimatorValues=false, UseSupervisedDiscretization=false}	34.12%	68.25%	65.88%	65.90%

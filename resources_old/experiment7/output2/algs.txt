@@ -1,0 +1,8 @@
+Decision Tree
+Decision Stump
+Decision List
+Decision Table
+Naive Bayes
+Random Forrest
+Support Vector Machine
+Multilayer Perceptron

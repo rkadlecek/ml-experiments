@@ -1,0 +1,27 @@
+<!DOCTYPE Ontology [
+    <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rkd "http://www.kadlecek.sk/dp/ontology-ns#" > ]>
+
+<owlx:Ontology owlx:name="http://www.example.org/wine"
+  xmlns:owlx="http://www.w3.org/2003/05/owl-xml">
+
+    <owlx:Annotation>
+      <owlx:Documentation>An example OWL ontology</owlx:Documentation>
+    </owlx:Annotation>
+    <owlx:PriorVersion owlx:ontology="http://www.example.org/wine-112102.owl" />
+    <owlx:Imports owlx:ontology="http://www.example.org/food.owl"/>
+    <owlx:Annotation>
+      <owlx:Label>Wine Ontology</owlx:Label>
+    </owlx:Annotation>
+
+
+    <owl:Class rdf:ID="Phone" />
+
+    <owl:Class rdf:ID="SmartPhone" />
+        <rdfs:subClassOf rdf:resource="#Phone" />
+        <owlx:Annotation>
+            <owlx:Label xml:lang="en">Smart Phone</owlx:Label>
+        </owlx:Annotation>
+    </owl:Class>
+
+</owlx:Ontology>
